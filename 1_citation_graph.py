@@ -454,7 +454,7 @@ def find_intermediary_papers(G, api_name, max_depth=3, max_papers_per_node=10):
             if api_name == "openalex":
                 citing_papers = get_cited_by_works(current_paper)
             elif api_name == "semanticscholar":
-                citing_papers = get_semanticscholar_citations(current_doi)
+                citing_papers = get_semanticscholar_references(current_doi)
             # No citations for Crossref
             
             # Get papers cited by this paper
@@ -765,7 +765,23 @@ def get_semanticscholar_references(doi):
     return references
 
 def get_semanticscholar_citations(doi):
-    """Get citations (works that cite this paper) from Semantic Scholar."""
+    """
+    Retrieves the DOIs of works that cite the paper identified by the given DOI,
+    using the Semantic Scholar API.
+
+    This function first fetches the paper's data using `get_semanticscholar_paper`.
+    If the paper data is found and contains citation information, it extracts
+    the DOIs of the citing papers.
+
+    Args:
+        doi (str): The DOI of the paper for which to retrieve citations.
+
+    Returns:
+        list[str]: A list of DOIs (normalized to lowercase) of the papers
+                   that cite the input DOI. Returns an empty list if the paper
+                   is not found, has no citation data, or no citing papers
+                   have DOIs listed.
+    """
     paper_data = get_semanticscholar_paper(doi)
     if not paper_data or 'citations' not in paper_data:
         return []

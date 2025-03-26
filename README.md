@@ -1,11 +1,11 @@
 # Citation Graph Generator
 
-This script generates a citation graph from a BibTeX file containing DOIs. It uses either the OpenAlex API, OpenCitations API, or Crossref API to retrieve citation data and visualize the relationships between papers.
+This script generates a citation graph from a BibTeX file containing DOIs. It uses either the OpenAlex API, Semantic Scholar API, or Crossref API to retrieve citation data and visualize the relationships between papers.
 
 ## Features
 
 - Extracts DOIs from a BibTeX file
-- Retrieves citation information from multiple API sources (OpenAlex, OpenCitations, or Crossref)
+- Retrieves citation information from multiple API sources (OpenAlex, Semantic Scholar, or Crossref)
 - Builds a graph representing citation relationships
 - Visualizes the citation network
 - Generates a citation report with statistics
@@ -41,14 +41,14 @@ python 1_citation_graph.py
 
 ### Choosing a Citation API
 
-You can choose between three different citation APIs:
+You can choose between different citation APIs:
 
 ```bash
 # Use OpenAlex API (default)
 python 1_citation_graph.py --api openalex
 
-# Use OpenCitations API
-python 1_citation_graph.py --api opencitations
+# Use Semantic Scholar API
+python 1_citation_graph.py --api semanticscholar
 
 # Use Crossref API
 python 1_citation_graph.py --api crossref
@@ -91,7 +91,7 @@ This will:
 - `--cache`: Use cached API data if available (saves and reuses API calls)
 - `--email`: Your email address for API requests (recommended for better service)
 - `--output-dir`: Directory to save output files (default: "output")
-- `--api`: API to use for citation data - "openalex", "opencitations", "crossref", or "all" (default: "openalex")
+- `--api`: API to use for citation data - "openalex", "semanticscholar", "crossref", or "all" (default: "openalex")
 
 ## Output Files
 
@@ -100,7 +100,7 @@ The script generates the following files in the output directory:
 ### Citation Graph Files
 - Cache files (depending on API choice):
   - `openalex_ids_cache.json`
-  - `opencitations_ids_cache.json`
+  - `semanticscholar_ids_cache.json`
   - `crossref_ids_cache.json`
 - `citation_graph.json`: A JSON file containing the graph data
 - `citation_graph.png`: A visualization of the citation network
@@ -119,7 +119,7 @@ The script generates the following files in the output directory:
 1. The script extracts DOIs from the BibTeX file
 2. Depending on the chosen API:
    - **OpenAlex**: Maps DOIs to OpenAlex IDs and uses them to find references and citations
-   - **OpenCitations**: Uses DOIs directly to find reference and citation relationships
+   - **Semantic Scholar**: Uses DOIs directly to find reference and citation relationships
    - **Crossref**: Uses DOIs to lookup works and extract their reference lists
    - **All**: Combines results from all three APIs for maximum coverage
 3. It creates a directed graph where:
@@ -148,9 +148,9 @@ The community detection script (`2_community_detection.py`) provides:
 - Advantages: Larger database, more metadata available, good coverage
 - Disadvantages: May require more API calls (DOI to ID mapping)
 
-### OpenCitations
-- Advantages: Direct DOI-to-DOI citation relationships, simpler API
-- Disadvantages: May have less coverage than OpenAlex for some disciplines
+### Semantic Scholar
+- Advantages: Provides both references and citations, good coverage, relatively simple API
+- Disadvantages: Rate limits can be strict, requires careful handling of API keys for higher limits
 
 ### Crossref
 - Advantages: Comprehensive reference lists, primary source of DOI registration
@@ -174,5 +174,5 @@ The script includes robust error handling:
 ## API References
 
 - [OpenAlex API](https://docs.openalex.org/): An open scientific knowledge graph with structured data about scientific publications
-- [OpenCitations API](https://opencitations.net/index/coci/api/v1): An open index of DOI-to-DOI citation links derived from Crossref's open reference lists
+- [Semantic Scholar API](https://api.semanticscholar.org/): Provides access to a large corpus of academic papers and citation data
 - [Crossref API](https://github.com/CrossRef/rest-api-doc): The official API for Crossref, the registration agency for scholarly publication DOIs 
