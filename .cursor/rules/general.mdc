@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- use the `datasci` conda environment via `conda activate datasci` when running commands
+- main scripts is in `main.py`
+- readme at `README.md`
