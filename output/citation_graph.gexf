@@ -1,0 +1,610 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2025-03-26">
+    <creator>NetworkX 3.4.2</creator>
+  </meta>
+  <graph defaultedgetype="directed" mode="static" name="">
+    <attributes mode="static" class="node">
+      <attribute id="0" title="first_author" type="string" />
+      <attribute id="1" title="year" type="string" />
+    </attributes>
+    <nodes>
+      <node id="10.1186/s12966-024-01587-6" label="Zink, 2024">
+        <attvalues>
+          <attvalue for="0" value="Zink" />
+          <attvalue for="1" value="2024" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.adolescence.2014.07.013" label="Wolfe, 2014">
+        <attvalues>
+          <attvalue for="0" value="Wolfe" />
+          <attvalue for="1" value="2014" />
+        </attvalues>
+      </node>
+      <node id="10.1177/0962280217737805" label="Dumuid, 2019">
+        <attvalues>
+          <attvalue for="0" value="Dumuid" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.1037/dev0000851" label="Manago, 2020">
+        <attvalues>
+          <attvalue for="0" value="Manago" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1093/sleep/30.9.1220" label="Bulck, 2007">
+        <attvalues>
+          <attvalue for="0" value="Bulck" />
+          <attvalue for="1" value="2007" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.tele.2020.101558" label="Qin, 2021">
+        <attvalues>
+          <attvalue for="0" value="Qin" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1177/0093650216686877" label="Exelmans, 2021">
+        <attvalues>
+          <attvalue for="0" value="Exelmans" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1177/0265407519836170" label="Twenge, 2019">
+        <attvalues>
+          <attvalue for="0" value="Twenge" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.1080/0144929x.2019.1634762" label="Chen, 2020">
+        <attvalues>
+          <attvalue for="0" value="Chen" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1007/s12187-019-09675-x" label="Goode, 2020">
+        <attvalues>
+          <attvalue for="0" value="Goode" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.sleep.2016.01.009" label="Smith, 2017">
+        <attvalues>
+          <attvalue for="0" value="Smith" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.3389/fpsyt.2022.809745" label="Ma, 2022">
+        <attvalues>
+          <attvalue for="0" value="Ma" />
+          <attvalue for="1" value="2022" />
+        </attvalues>
+      </node>
+      <node id="10.2196/22740" label="Cheng, 2020">
+        <attvalues>
+          <attvalue for="0" value="Cheng" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1177/0044118x19868365" label="Fomby, 2021">
+        <attvalues>
+          <attvalue for="0" value="Fomby" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1037/dev0000399" label="Gentile, 2017">
+        <attvalues>
+          <attvalue for="0" value="Gentile" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.1016/s2352-4642(19)30424-9" label="Chen, 2020">
+        <attvalues>
+          <attvalue for="0" value="Chen" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1037/ppm0000479" label="Reinhardt, 2023">
+        <attvalues>
+          <attvalue for="0" value="Reinhardt" />
+          <attvalue for="1" value="2023" />
+        </attvalues>
+      </node>
+      <node id="10.1108/jd-10-2016-0117" label="Sin, 2017">
+        <attvalues>
+          <attvalue for="0" value="Sin" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.1186/s12889-021-11802-9" label="Winstone, 2021">
+        <attvalues>
+          <attvalue for="0" value="Winstone" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1111/hcre.12081" label="Tokunaga, 2016">
+        <attvalues>
+          <attvalue for="0" value="Tokunaga" />
+          <attvalue for="1" value="2016" />
+        </attvalues>
+      </node>
+      <node id="10.17269/s41997-023-00754-9" label="Morningstar, 2023">
+        <attvalues>
+          <attvalue for="0" value="Morningstar" />
+          <attvalue for="1" value="2023" />
+        </attvalues>
+      </node>
+      <node id="10.1037/0012-1649.35.4.912" label="Huston, 1999">
+        <attvalues>
+          <attvalue for="0" value="Huston" />
+          <attvalue for="1" value="1999" />
+        </attvalues>
+      </node>
+      <node id="10.1037/dev0001148" label="Pouwels, 2021">
+        <attvalues>
+          <attvalue for="0" value="Pouwels" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1038/s41390-022-02261-y" label="Putnick, 2022">
+        <attvalues>
+          <attvalue for="0" value="Putnick" />
+          <attvalue for="1" value="2022" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.jpeds.2018.09.054" label="Przybylski, 2019">
+        <attvalues>
+          <attvalue for="0" value="Przybylski" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.1177/1461444817724169" label="Vriens, 2018">
+        <attvalues>
+          <attvalue for="0" value="Vriens" />
+          <attvalue for="1" value="2018" />
+        </attvalues>
+      </node>
+      <node id="10.1080/17461391.2018.1548649" label="Lizandra, 2019">
+        <attvalues>
+          <attvalue for="0" value="Lizandra" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.1002/jad.12376" label="Shen, 2024">
+        <attvalues>
+          <attvalue for="0" value="Shen" />
+          <attvalue for="1" value="2024" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.chb.2020.106550" label="Verduyn, 2021">
+        <attvalues>
+          <attvalue for="0" value="Verduyn" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1177/009365093020001003" label="Mutz, 1993">
+        <attvalues>
+          <attvalue for="0" value="Mutz" />
+          <attvalue for="1" value="1993" />
+        </attvalues>
+      </node>
+      <node id="10.1093/aje/kwp163" label="Mekary, 2009">
+        <attvalues>
+          <attvalue for="0" value="Mekary" />
+          <attvalue for="1" value="2009" />
+        </attvalues>
+      </node>
+      <node id="10.1111/j.1083-6101.2007.00368.x" label="Valkenburg, 2007">
+        <attvalues>
+          <attvalue for="0" value="Valkenburg" />
+          <attvalue for="1" value="2007" />
+        </attvalues>
+      </node>
+      <node id="10.1177/00027640121957277" label="Nie, 2001">
+        <attvalues>
+          <attvalue for="0" value="Nie" />
+          <attvalue for="1" value="2001" />
+        </attvalues>
+      </node>
+      <node id="10.1080/07448481.2022.2152690" label="Hamam, 2023">
+        <attvalues>
+          <attvalue for="0" value="Hamam" />
+          <attvalue for="1" value="2023" />
+        </attvalues>
+      </node>
+      <node id="10.1080/1369118x.2018.1430162" label="Hall, 2019">
+        <attvalues>
+          <attvalue for="0" value="Hall" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.3389/fpsyg.2021.707667" label="Li, 2021">
+        <attvalues>
+          <attvalue for="0" value="Li" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1111/1540-4560.00248" label="Kraut, 2002">
+        <attvalues>
+          <attvalue for="0" value="Kraut" />
+          <attvalue for="1" value="2002" />
+        </attvalues>
+      </node>
+      <node id="10.1111/jora.12618" label="Jensen, 2021">
+        <attvalues>
+          <attvalue for="0" value="Jensen" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1111/apa.12935" label="Reynolds, 2015">
+        <attvalues>
+          <attvalue for="0" value="Reynolds" />
+          <attvalue for="1" value="2015" />
+        </attvalues>
+      </node>
+      <node id="10.3390/ijerph17197122" label="Sittichai, 2020">
+        <attvalues>
+          <attvalue for="0" value="Sittichai" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1186/s12889-020-09894-w" label="Lees, 2020">
+        <attvalues>
+          <attvalue for="0" value="Lees" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1177/1461444817737296" label="Vilhelmson, 2018">
+        <attvalues>
+          <attvalue for="0" value="Vilhelmson" />
+          <attvalue for="1" value="2018" />
+        </attvalues>
+      </node>
+      <node id="10.1080/0144929x.2024.2406255" label="Schenkel, 2024">
+        <attvalues>
+          <attvalue for="0" value="Schenkel" />
+          <attvalue for="1" value="2024" />
+        </attvalues>
+      </node>
+      <node id="10.1111/jcc4.12183" label="Dienlin, 2017">
+        <attvalues>
+          <attvalue for="0" value="Dienlin" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.1177/00936502241276793" label="Siebers, 2024">
+        <attvalues>
+          <attvalue for="0" value="Siebers" />
+          <attvalue for="1" value="2024" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.sleep.2010.02.006" label="Cain, 2010">
+        <attvalues>
+          <attvalue for="0" value="Cain" />
+          <attvalue for="1" value="2010" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.chb.2015.05.026" label="Carrier, 2015">
+        <attvalues>
+          <attvalue for="0" value="Carrier" />
+          <attvalue for="1" value="2015" />
+        </attvalues>
+      </node>
+      <node id="10.1177/2167702617723376" label="Twenge, 2018">
+        <attvalues>
+          <attvalue for="0" value="Twenge" />
+          <attvalue for="1" value="2018" />
+        </attvalues>
+      </node>
+      <node id="10.1080/15213269.2016.1257393" label="Domahidi, 2018">
+        <attvalues>
+          <attvalue for="0" value="Domahidi" />
+          <attvalue for="1" value="2018" />
+        </attvalues>
+      </node>
+      <node id="10.1111/jsr.12510" label="Exelmans, 2017">
+        <attvalues>
+          <attvalue for="0" value="Exelmans" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.1249/mss.0000000000001002" label="Huang, 2016">
+        <attvalues>
+          <attvalue for="0" value="Huang" />
+          <attvalue for="1" value="2016" />
+        </attvalues>
+      </node>
+      <node id="10.1001/jamapediatrics.2024.2914" label="Brosnan, 2024">
+        <attvalues>
+          <attvalue for="0" value="Brosnan" />
+          <attvalue for="1" value="2024" />
+        </attvalues>
+      </node>
+      <node id="10.1155/2022/1402751" label="Aljasir, 2022">
+        <attvalues>
+          <attvalue for="0" value="Aljasir" />
+          <attvalue for="1" value="2022" />
+        </attvalues>
+      </node>
+      <node id="10.1177/1461444820932556" label="Liu, 2021">
+        <attvalues>
+          <attvalue for="0" value="Liu" />
+          <attvalue for="1" value="2021" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.chb.2014.04.003" label="Kowert, 2014">
+        <attvalues>
+          <attvalue for="0" value="Kowert" />
+          <attvalue for="1" value="2014" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.chb.2015.08.049" label="Orzech, 2016">
+        <attvalues>
+          <attvalue for="0" value="Orzech" />
+          <attvalue for="1" value="2016" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.compedu.2019.103704" label="Drummond, 2020">
+        <attvalues>
+          <attvalue for="0" value="Drummond" />
+          <attvalue for="1" value="2020" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.chb.2016.04.043" label="Liang, 2016">
+        <attvalues>
+          <attvalue for="0" value="Liang" />
+          <attvalue for="1" value="2016" />
+        </attvalues>
+      </node>
+      <node id="10.2105/ajph.2013.301783" label="Booker, 2015">
+        <attvalues>
+          <attvalue for="0" value="Booker" />
+          <attvalue for="1" value="2015" />
+        </attvalues>
+      </node>
+      <node id="10.1371/journal.pone.0139984" label="Chastin, 2015">
+        <attvalues>
+          <attvalue for="0" value="Chastin" />
+          <attvalue for="1" value="2015" />
+        </attvalues>
+      </node>
+      <node id="10.1080/10494820.2022.2160765" label="Ngwoke, 2022">
+        <attvalues>
+          <attvalue for="0" value="Ngwoke" />
+          <attvalue for="1" value="2022" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.adolescence.2013.11.003" label="Teppers, 2014">
+        <attvalues>
+          <attvalue for="0" value="Teppers" />
+          <attvalue for="1" value="2014" />
+        </attvalues>
+      </node>
+      <node id="10.1080/1369118x.2016.1164741" label="Vilhelmson, 2017">
+        <attvalues>
+          <attvalue for="0" value="Vilhelmson" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.chb.2015.03.073" label="Lee, 2015">
+        <attvalues>
+          <attvalue for="0" value="Lee" />
+          <attvalue for="1" value="2015" />
+        </attvalues>
+      </node>
+      <node id="10.1007/s11469-024-01313-0" label="Vidal, 2024">
+        <attvalues>
+          <attvalue for="0" value="Vidal" />
+          <attvalue for="1" value="2024" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.compedu.2017.12.007" label="Hartanto, 2017">
+        <attvalues>
+          <attvalue for="0" value="Hartanto" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.1177/0956797616678438" label="Przybylski, 2017">
+        <attvalues>
+          <attvalue for="0" value="Przybylski" />
+          <attvalue for="1" value="2017" />
+        </attvalues>
+      </node>
+      <node id="10.1016/s2352-4642(19)30186-5" label="Viner, 2019">
+        <attvalues>
+          <attvalue for="0" value="Viner" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.3390/children9081186" label="Huang, 2022">
+        <attvalues>
+          <attvalue for="0" value="Huang" />
+          <attvalue for="1" value="2022" />
+        </attvalues>
+      </node>
+      <node id="10.1111/sjop.12467" label="Skaug, 2018">
+        <attvalues>
+          <attvalue for="0" value="Skaug" />
+          <attvalue for="1" value="2018" />
+        </attvalues>
+      </node>
+      <node id="10.1016/j.envres.2018.10.036" label="Cabré-Riera, 2019">
+        <attvalues>
+          <attvalue for="0" value="Cabré-Riera" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.1037/0003-066x.53.9.1017" label="Kraut, 1998">
+        <attvalues>
+          <attvalue for="0" value="Kraut" />
+          <attvalue for="1" value="1998" />
+        </attvalues>
+      </node>
+      <node id="10.1027/1864-1105/a000388" label="Wu-Ouyang, 2023">
+        <attvalues>
+          <attvalue for="0" value="Wu-Ouyang" />
+          <attvalue for="1" value="2023" />
+        </attvalues>
+      </node>
+      <node id="10.1177/1461444818804775" label="Hall, 2019">
+        <attvalues>
+          <attvalue for="0" value="Hall" />
+          <attvalue for="1" value="2019" />
+        </attvalues>
+      </node>
+      <node id="10.1371/journal.pone.0142544" label="Spengler, 2015">
+        <attvalues>
+          <attvalue for="0" value="Spengler" />
+          <attvalue for="1" value="2015" />
+        </attvalues>
+      </node>
+      <node id="10.1080/15213269.2024.2400571" label="Ellithorpe, 2024">
+        <attvalues>
+          <attvalue for="0" value="Ellithorpe" />
+          <attvalue for="1" value="2024" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="10.1186/s12966-024-01587-6" target="10.1371/journal.pone.0139984" id="0" type="references" />
+      <edge source="10.1186/s12966-024-01587-6" target="10.1093/aje/kwp163" id="1" type="references" />
+      <edge source="10.1186/s12966-024-01587-6" target="10.1249/mss.0000000000001002" id="2" type="references" />
+      <edge source="10.1186/s12966-024-01587-6" target="10.1177/0962280217737805" id="3" type="references" />
+      <edge source="10.1186/s12966-024-01587-6" target="10.1016/j.envres.2018.10.036" id="4" type="references" />
+      <edge source="10.1186/s12966-024-01587-6" target="10.1177/0044118x19868365" id="5" type="references" />
+      <edge source="10.1016/j.adolescence.2014.07.013" target="10.1016/j.sleep.2010.02.006" id="6" type="references" />
+      <edge source="10.1177/0962280217737805" target="10.1371/journal.pone.0139984" id="7" type="references" />
+      <edge source="10.1177/0962280217737805" target="10.1093/aje/kwp163" id="8" type="references" />
+      <edge source="10.1037/dev0000851" target="10.1111/1540-4560.00248" id="9" type="references" />
+      <edge source="10.1037/dev0000851" target="10.1016/j.adolescence.2013.11.003" id="10" type="references" />
+      <edge source="10.1037/dev0000851" target="10.1111/j.1083-6101.2007.00368.x" id="11" type="references" />
+      <edge source="10.1037/dev0000851" target="10.1111/jcc4.12183" id="12" type="references" />
+      <edge source="10.1037/dev0000851" target="10.1037/0003-066x.53.9.1017" id="13" type="references" />
+      <edge source="10.1016/j.tele.2020.101558" target="10.1177/00027640121957277" id="14" type="references" />
+      <edge source="10.1016/j.tele.2020.101558" target="10.1111/1540-4560.00248" id="15" type="references" />
+      <edge source="10.1016/j.tele.2020.101558" target="10.1037/0003-066x.53.9.1017" id="16" type="references" />
+      <edge source="10.1177/0265407519836170" target="10.1111/j.1083-6101.2007.00368.x" id="17" type="references" />
+      <edge source="10.1177/0265407519836170" target="10.1111/jcc4.12183" id="18" type="references" />
+      <edge source="10.1177/0265407519836170" target="10.1177/1461444817724169" id="19" type="references" />
+      <edge source="10.1177/0265407519836170" target="10.1177/1461444817737296" id="20" type="references" />
+      <edge source="10.1007/s12187-019-09675-x" target="10.1016/j.jpeds.2018.09.054" id="21" type="references" />
+      <edge source="10.1016/j.sleep.2016.01.009" target="10.1016/j.sleep.2010.02.006" id="22" type="references" />
+      <edge source="10.1016/j.sleep.2016.01.009" target="10.1016/j.adolescence.2014.07.013" id="23" type="references" />
+      <edge source="10.1016/j.sleep.2016.01.009" target="10.1111/apa.12935" id="24" type="references" />
+      <edge source="10.3389/fpsyt.2022.809745" target="10.1007/s12187-019-09675-x" id="25" type="references" />
+      <edge source="10.1177/0044118x19868365" target="10.1016/j.sleep.2010.02.006" id="26" type="references" />
+      <edge source="10.1177/0044118x19868365" target="10.1093/sleep/30.9.1220" id="27" type="references" />
+      <edge source="10.1016/s2352-4642(19)30424-9" target="10.1371/journal.pone.0139984" id="28" type="references" />
+      <edge source="10.1186/s12889-021-11802-9" target="10.1111/j.1083-6101.2007.00368.x" id="29" type="references" />
+      <edge source="10.1186/s12889-021-11802-9" target="10.1016/s2352-4642(19)30186-5" id="30" type="references" />
+      <edge source="10.1186/s12889-021-11802-9" target="10.1016/j.chb.2020.106550" id="31" type="references" />
+      <edge source="10.1186/s12889-021-11802-9" target="10.1037/dev0001148" id="32" type="references" />
+      <edge source="10.1186/s12889-021-11802-9" target="10.1111/jora.12618" id="33" type="references" />
+      <edge source="10.1186/s12889-021-11802-9" target="10.1037/0003-066x.53.9.1017" id="34" type="references" />
+      <edge source="10.1111/hcre.12081" target="10.1177/00027640121957277" id="35" type="references" />
+      <edge source="10.1111/hcre.12081" target="10.1111/1540-4560.00248" id="36" type="references" />
+      <edge source="10.1111/hcre.12081" target="10.1111/j.1083-6101.2007.00368.x" id="37" type="references" />
+      <edge source="10.1111/hcre.12081" target="10.1037/0003-066x.53.9.1017" id="38" type="references" />
+      <edge source="10.17269/s41997-023-00754-9" target="10.1177/0956797616678438" id="39" type="references" />
+      <edge source="10.17269/s41997-023-00754-9" target="10.1016/s2352-4642(19)30186-5" id="40" type="references" />
+      <edge source="10.1037/0012-1649.35.4.912" target="10.1177/009365093020001003" id="41" type="references" />
+      <edge source="10.1037/dev0001148" target="10.1111/jcc4.12183" id="42" type="references" />
+      <edge source="10.1037/dev0001148" target="10.1177/1461444817737296" id="43" type="references" />
+      <edge source="10.1037/dev0001148" target="10.1016/j.chb.2020.106550" id="44" type="references" />
+      <edge source="10.1038/s41390-022-02261-y" target="10.1177/009365093020001003" id="45" type="references" />
+      <edge source="10.1038/s41390-022-02261-y" target="10.1080/17461391.2018.1548649" id="46" type="references" />
+      <edge source="10.1038/s41390-022-02261-y" target="10.1016/s2352-4642(19)30424-9" id="47" type="references" />
+      <edge source="10.1038/s41390-022-02261-y" target="10.1037/0012-1649.35.4.912" id="48" type="references" />
+      <edge source="10.1016/j.jpeds.2018.09.054" target="10.1177/0956797616678438" id="49" type="references" />
+      <edge source="10.1177/1461444817724169" target="10.1037/0003-066x.53.9.1017" id="50" type="references" />
+      <edge source="10.1080/17461391.2018.1548649" target="10.1177/009365093020001003" id="51" type="references" />
+      <edge source="10.1002/jad.12376" target="10.1037/0003-066x.53.9.1017" id="52" type="references" />
+      <edge source="10.1016/j.chb.2020.106550" target="10.1111/1540-4560.00248" id="53" type="references" />
+      <edge source="10.1016/j.chb.2020.106550" target="10.1111/jcc4.12183" id="54" type="references" />
+      <edge source="10.1016/j.chb.2020.106550" target="10.1080/1369118x.2018.1430162" id="55" type="references" />
+      <edge source="10.1016/j.chb.2020.106550" target="10.1177/0265407519836170" id="56" type="references" />
+      <edge source="10.1016/j.chb.2020.106550" target="10.1037/0003-066x.53.9.1017" id="57" type="references" />
+      <edge source="10.1111/j.1083-6101.2007.00368.x" target="10.1177/00027640121957277" id="58" type="references" />
+      <edge source="10.1111/j.1083-6101.2007.00368.x" target="10.1111/1540-4560.00248" id="59" type="references" />
+      <edge source="10.1111/j.1083-6101.2007.00368.x" target="10.1037/0003-066x.53.9.1017" id="60" type="references" />
+      <edge source="10.1080/1369118x.2018.1430162" target="10.1177/00027640121957277" id="61" type="references" />
+      <edge source="10.1080/1369118x.2018.1430162" target="10.1111/1540-4560.00248" id="62" type="references" />
+      <edge source="10.1080/1369118x.2018.1430162" target="10.1037/0003-066x.53.9.1017" id="63" type="references" />
+      <edge source="10.3389/fpsyg.2021.707667" target="10.1016/j.adolescence.2013.11.003" id="64" type="references" />
+      <edge source="10.3389/fpsyg.2021.707667" target="10.1037/0003-066x.53.9.1017" id="65" type="references" />
+      <edge source="10.1111/1540-4560.00248" target="10.1037/0003-066x.53.9.1017" id="66" type="references" />
+      <edge source="10.1111/jora.12618" target="10.1177/0956797616678438" id="67" type="references" />
+      <edge source="10.1111/jora.12618" target="10.1111/jcc4.12183" id="68" type="references" />
+      <edge source="10.1111/jora.12618" target="10.1037/0003-066x.53.9.1017" id="69" type="references" />
+      <edge source="10.1111/apa.12935" target="10.1016/j.sleep.2010.02.006" id="70" type="references" />
+      <edge source="10.3390/ijerph17197122" target="10.1111/j.1083-6101.2007.00368.x" id="71" type="references" />
+      <edge source="10.3390/ijerph17197122" target="10.1177/0956797616678438" id="72" type="references" />
+      <edge source="10.3390/ijerph17197122" target="10.1177/2167702617723376" id="73" type="references" />
+      <edge source="10.3390/ijerph17197122" target="10.1016/s2352-4642(19)30186-5" id="74" type="references" />
+      <edge source="10.1186/s12889-020-09894-w" target="10.1177/009365093020001003" id="75" type="references" />
+      <edge source="10.1186/s12889-020-09894-w" target="10.1371/journal.pone.0142544" id="76" type="references" />
+      <edge source="10.1177/1461444817737296" target="10.1080/1369118x.2016.1164741" id="77" type="references" />
+      <edge source="10.1080/0144929x.2024.2406255" target="10.1177/00027640121957277" id="78" type="references" />
+      <edge source="10.1080/0144929x.2024.2406255" target="10.1111/j.1083-6101.2007.00368.x" id="79" type="references" />
+      <edge source="10.1080/0144929x.2024.2406255" target="10.1177/0956797616678438" id="80" type="references" />
+      <edge source="10.1111/jcc4.12183" target="10.1111/1540-4560.00248" id="81" type="references" />
+      <edge source="10.1111/jcc4.12183" target="10.1111/j.1083-6101.2007.00368.x" id="82" type="references" />
+      <edge source="10.1111/jcc4.12183" target="10.1037/0003-066x.53.9.1017" id="83" type="references" />
+      <edge source="10.1177/00936502241276793" target="10.1016/j.sleep.2010.02.006" id="84" type="references" />
+      <edge source="10.1177/00936502241276793" target="10.1016/j.adolescence.2014.07.013" id="85" type="references" />
+      <edge source="10.1177/00936502241276793" target="10.1093/sleep/30.9.1220" id="86" type="references" />
+      <edge source="10.1177/00936502241276793" target="10.1111/jsr.12510" id="87" type="references" />
+      <edge source="10.1177/00936502241276793" target="10.1016/j.envres.2018.10.036" id="88" type="references" />
+      <edge source="10.1016/j.sleep.2010.02.006" target="10.1093/sleep/30.9.1220" id="89" type="references" />
+      <edge source="10.1177/2167702617723376" target="10.1111/jcc4.12183" id="90" type="references" />
+      <edge source="10.1080/15213269.2016.1257393" target="10.1177/00027640121957277" id="91" type="references" />
+      <edge source="10.1080/15213269.2016.1257393" target="10.1037/0003-066x.53.9.1017" id="92" type="references" />
+      <edge source="10.1111/jsr.12510" target="10.1016/j.sleep.2010.02.006" id="93" type="references" />
+      <edge source="10.1111/jsr.12510" target="10.1093/sleep/30.9.1220" id="94" type="references" />
+      <edge source="10.1111/jsr.12510" target="10.1016/j.sleep.2016.01.009" id="95" type="references" />
+      <edge source="10.1111/jsr.12510" target="10.1177/0093650216686877" id="96" type="references" />
+      <edge source="10.1249/mss.0000000000001002" target="10.1093/aje/kwp163" id="97" type="references" />
+      <edge source="10.1001/jamapediatrics.2024.2914" target="10.1016/j.sleep.2010.02.006" id="98" type="references" />
+      <edge source="10.1001/jamapediatrics.2024.2914" target="10.1177/0093650216686877" id="99" type="references" />
+      <edge source="10.1001/jamapediatrics.2024.2914" target="10.1111/jsr.12510" id="100" type="references" />
+      <edge source="10.1155/2022/1402751" target="10.1108/jd-10-2016-0117" id="101" type="references" />
+      <edge source="10.1177/1461444820932556" target="10.1111/1540-4560.00248" id="102" type="references" />
+      <edge source="10.1177/1461444820932556" target="10.1037/0003-066x.53.9.1017" id="103" type="references" />
+      <edge source="10.1016/j.chb.2014.04.003" target="10.1037/0003-066x.53.9.1017" id="104" type="references" />
+      <edge source="10.1016/j.chb.2015.08.049" target="10.1016/j.sleep.2010.02.006" id="105" type="references" />
+      <edge source="10.1016/j.chb.2015.08.049" target="10.1016/j.adolescence.2014.07.013" id="106" type="references" />
+      <edge source="10.1016/j.compedu.2019.103704" target="10.1016/j.compedu.2017.12.007" id="107" type="references" />
+      <edge source="10.1016/j.compedu.2019.103704" target="10.1037/0012-1649.35.4.912" id="108" type="references" />
+      <edge source="10.1016/j.chb.2016.04.043" target="10.1037/0003-066x.53.9.1017" id="109" type="references" />
+      <edge source="10.2105/ajph.2013.301783" target="10.1111/j.1083-6101.2007.00368.x" id="110" type="references" />
+      <edge source="10.2105/ajph.2013.301783" target="10.1177/009365093020001003" id="111" type="references" />
+      <edge source="10.1016/j.adolescence.2013.11.003" target="10.1037/0003-066x.53.9.1017" id="112" type="references" />
+      <edge source="10.1080/1369118x.2016.1164741" target="10.1177/00027640121957277" id="113" type="references" />
+      <edge source="10.1080/1369118x.2016.1164741" target="10.1037/0003-066x.53.9.1017" id="114" type="references" />
+      <edge source="10.1016/j.chb.2015.03.073" target="10.1177/009365093020001003" id="115" type="references" />
+      <edge source="10.1007/s11469-024-01313-0" target="10.1177/2167702617723376" id="116" type="references" />
+      <edge source="10.1007/s11469-024-01313-0" target="10.1177/1461444818804775" id="117" type="references" />
+      <edge source="10.1007/s11469-024-01313-0" target="10.17269/s41997-023-00754-9" id="118" type="references" />
+      <edge source="10.1016/j.compedu.2017.12.007" target="10.1037/0012-1649.35.4.912" id="119" type="references" />
+      <edge source="10.1016/s2352-4642(19)30186-5" target="10.2105/ajph.2013.301783" id="120" type="references" />
+      <edge source="10.3390/children9081186" target="10.1186/s12889-021-11802-9" id="121" type="references" />
+      <edge source="10.3390/children9081186" target="10.1037/0003-066x.53.9.1017" id="122" type="references" />
+      <edge source="10.1111/sjop.12467" target="10.1037/0003-066x.53.9.1017" id="123" type="references" />
+      <edge source="10.1016/j.envres.2018.10.036" target="10.1016/j.sleep.2010.02.006" id="124" type="references" />
+      <edge source="10.1016/j.envres.2018.10.036" target="10.1111/jsr.12510" id="125" type="references" />
+      <edge source="10.1027/1864-1105/a000388" target="10.1177/0956797616678438" id="126" type="references" />
+      <edge source="10.1027/1864-1105/a000388" target="10.1111/jcc4.12183" id="127" type="references" />
+      <edge source="10.1177/1461444818804775" target="10.1177/00027640121957277" id="128" type="references" />
+      <edge source="10.1177/1461444818804775" target="10.1111/1540-4560.00248" id="129" type="references" />
+      <edge source="10.1177/1461444818804775" target="10.1111/hcre.12081" id="130" type="references" />
+      <edge source="10.1177/1461444818804775" target="10.1080/1369118x.2016.1164741" id="131" type="references" />
+      <edge source="10.1177/1461444818804775" target="10.1111/jcc4.12183" id="132" type="references" />
+      <edge source="10.1177/1461444818804775" target="10.1080/1369118x.2018.1430162" id="133" type="references" />
+      <edge source="10.1177/1461444818804775" target="10.1037/0003-066x.53.9.1017" id="134" type="references" />
+      <edge source="10.1371/journal.pone.0142544" target="10.1177/009365093020001003" id="135" type="references" />
+      <edge source="10.1080/15213269.2024.2400571" target="10.1016/j.chb.2015.08.049" id="136" type="references" />
+      <edge source="10.1080/15213269.2024.2400571" target="10.1111/jsr.12510" id="137" type="references" />
+    </edges>
+  </graph>
+</gexf>

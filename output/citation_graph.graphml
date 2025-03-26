@@ -1,0 +1,803 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d3" for="edge" attr.name="type" attr.type="string" />
+  <key id="d2" for="node" attr.name="label" attr.type="string" />
+  <key id="d1" for="node" attr.name="year" attr.type="string" />
+  <key id="d0" for="node" attr.name="first_author" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="10.1186/s12966-024-01587-6">
+      <data key="d0">Zink</data>
+      <data key="d1">2024</data>
+      <data key="d2">Zink, 2024</data>
+    </node>
+    <node id="10.1016/j.adolescence.2014.07.013">
+      <data key="d0">Wolfe</data>
+      <data key="d1">2014</data>
+      <data key="d2">Wolfe, 2014</data>
+    </node>
+    <node id="10.1177/0962280217737805">
+      <data key="d0">Dumuid</data>
+      <data key="d1">2019</data>
+      <data key="d2">Dumuid, 2019</data>
+    </node>
+    <node id="10.1037/dev0000851">
+      <data key="d0">Manago</data>
+      <data key="d1">2020</data>
+      <data key="d2">Manago, 2020</data>
+    </node>
+    <node id="10.1093/sleep/30.9.1220">
+      <data key="d0">Bulck</data>
+      <data key="d1">2007</data>
+      <data key="d2">Bulck, 2007</data>
+    </node>
+    <node id="10.1016/j.tele.2020.101558">
+      <data key="d0">Qin</data>
+      <data key="d1">2021</data>
+      <data key="d2">Qin, 2021</data>
+    </node>
+    <node id="10.1177/0093650216686877">
+      <data key="d0">Exelmans</data>
+      <data key="d1">2021</data>
+      <data key="d2">Exelmans, 2021</data>
+    </node>
+    <node id="10.1177/0265407519836170">
+      <data key="d0">Twenge</data>
+      <data key="d1">2019</data>
+      <data key="d2">Twenge, 2019</data>
+    </node>
+    <node id="10.1080/0144929x.2019.1634762">
+      <data key="d0">Chen</data>
+      <data key="d1">2020</data>
+      <data key="d2">Chen, 2020</data>
+    </node>
+    <node id="10.1007/s12187-019-09675-x">
+      <data key="d0">Goode</data>
+      <data key="d1">2020</data>
+      <data key="d2">Goode, 2020</data>
+    </node>
+    <node id="10.1016/j.sleep.2016.01.009">
+      <data key="d0">Smith</data>
+      <data key="d1">2017</data>
+      <data key="d2">Smith, 2017</data>
+    </node>
+    <node id="10.3389/fpsyt.2022.809745">
+      <data key="d0">Ma</data>
+      <data key="d1">2022</data>
+      <data key="d2">Ma, 2022</data>
+    </node>
+    <node id="10.2196/22740">
+      <data key="d0">Cheng</data>
+      <data key="d1">2020</data>
+      <data key="d2">Cheng, 2020</data>
+    </node>
+    <node id="10.1177/0044118x19868365">
+      <data key="d0">Fomby</data>
+      <data key="d1">2021</data>
+      <data key="d2">Fomby, 2021</data>
+    </node>
+    <node id="10.1037/dev0000399">
+      <data key="d0">Gentile</data>
+      <data key="d1">2017</data>
+      <data key="d2">Gentile, 2017</data>
+    </node>
+    <node id="10.1016/s2352-4642(19)30424-9">
+      <data key="d0">Chen</data>
+      <data key="d1">2020</data>
+      <data key="d2">Chen, 2020</data>
+    </node>
+    <node id="10.1037/ppm0000479">
+      <data key="d0">Reinhardt</data>
+      <data key="d1">2023</data>
+      <data key="d2">Reinhardt, 2023</data>
+    </node>
+    <node id="10.1108/jd-10-2016-0117">
+      <data key="d0">Sin</data>
+      <data key="d1">2017</data>
+      <data key="d2">Sin, 2017</data>
+    </node>
+    <node id="10.1186/s12889-021-11802-9">
+      <data key="d0">Winstone</data>
+      <data key="d1">2021</data>
+      <data key="d2">Winstone, 2021</data>
+    </node>
+    <node id="10.1111/hcre.12081">
+      <data key="d0">Tokunaga</data>
+      <data key="d1">2016</data>
+      <data key="d2">Tokunaga, 2016</data>
+    </node>
+    <node id="10.17269/s41997-023-00754-9">
+      <data key="d0">Morningstar</data>
+      <data key="d1">2023</data>
+      <data key="d2">Morningstar, 2023</data>
+    </node>
+    <node id="10.1037/0012-1649.35.4.912">
+      <data key="d0">Huston</data>
+      <data key="d1">1999</data>
+      <data key="d2">Huston, 1999</data>
+    </node>
+    <node id="10.1037/dev0001148">
+      <data key="d0">Pouwels</data>
+      <data key="d1">2021</data>
+      <data key="d2">Pouwels, 2021</data>
+    </node>
+    <node id="10.1038/s41390-022-02261-y">
+      <data key="d0">Putnick</data>
+      <data key="d1">2022</data>
+      <data key="d2">Putnick, 2022</data>
+    </node>
+    <node id="10.1016/j.jpeds.2018.09.054">
+      <data key="d0">Przybylski</data>
+      <data key="d1">2019</data>
+      <data key="d2">Przybylski, 2019</data>
+    </node>
+    <node id="10.1177/1461444817724169">
+      <data key="d0">Vriens</data>
+      <data key="d1">2018</data>
+      <data key="d2">Vriens, 2018</data>
+    </node>
+    <node id="10.1080/17461391.2018.1548649">
+      <data key="d0">Lizandra</data>
+      <data key="d1">2019</data>
+      <data key="d2">Lizandra, 2019</data>
+    </node>
+    <node id="10.1002/jad.12376">
+      <data key="d0">Shen</data>
+      <data key="d1">2024</data>
+      <data key="d2">Shen, 2024</data>
+    </node>
+    <node id="10.1016/j.chb.2020.106550">
+      <data key="d0">Verduyn</data>
+      <data key="d1">2021</data>
+      <data key="d2">Verduyn, 2021</data>
+    </node>
+    <node id="10.1177/009365093020001003">
+      <data key="d0">Mutz</data>
+      <data key="d1">1993</data>
+      <data key="d2">Mutz, 1993</data>
+    </node>
+    <node id="10.1093/aje/kwp163">
+      <data key="d0">Mekary</data>
+      <data key="d1">2009</data>
+      <data key="d2">Mekary, 2009</data>
+    </node>
+    <node id="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d0">Valkenburg</data>
+      <data key="d1">2007</data>
+      <data key="d2">Valkenburg, 2007</data>
+    </node>
+    <node id="10.1177/00027640121957277">
+      <data key="d0">Nie</data>
+      <data key="d1">2001</data>
+      <data key="d2">Nie, 2001</data>
+    </node>
+    <node id="10.1080/07448481.2022.2152690">
+      <data key="d0">Hamam</data>
+      <data key="d1">2023</data>
+      <data key="d2">Hamam, 2023</data>
+    </node>
+    <node id="10.1080/1369118x.2018.1430162">
+      <data key="d0">Hall</data>
+      <data key="d1">2019</data>
+      <data key="d2">Hall, 2019</data>
+    </node>
+    <node id="10.3389/fpsyg.2021.707667">
+      <data key="d0">Li</data>
+      <data key="d1">2021</data>
+      <data key="d2">Li, 2021</data>
+    </node>
+    <node id="10.1111/1540-4560.00248">
+      <data key="d0">Kraut</data>
+      <data key="d1">2002</data>
+      <data key="d2">Kraut, 2002</data>
+    </node>
+    <node id="10.1111/jora.12618">
+      <data key="d0">Jensen</data>
+      <data key="d1">2021</data>
+      <data key="d2">Jensen, 2021</data>
+    </node>
+    <node id="10.1111/apa.12935">
+      <data key="d0">Reynolds</data>
+      <data key="d1">2015</data>
+      <data key="d2">Reynolds, 2015</data>
+    </node>
+    <node id="10.3390/ijerph17197122">
+      <data key="d0">Sittichai</data>
+      <data key="d1">2020</data>
+      <data key="d2">Sittichai, 2020</data>
+    </node>
+    <node id="10.1186/s12889-020-09894-w">
+      <data key="d0">Lees</data>
+      <data key="d1">2020</data>
+      <data key="d2">Lees, 2020</data>
+    </node>
+    <node id="10.1177/1461444817737296">
+      <data key="d0">Vilhelmson</data>
+      <data key="d1">2018</data>
+      <data key="d2">Vilhelmson, 2018</data>
+    </node>
+    <node id="10.1080/0144929x.2024.2406255">
+      <data key="d0">Schenkel</data>
+      <data key="d1">2024</data>
+      <data key="d2">Schenkel, 2024</data>
+    </node>
+    <node id="10.1111/jcc4.12183">
+      <data key="d0">Dienlin</data>
+      <data key="d1">2017</data>
+      <data key="d2">Dienlin, 2017</data>
+    </node>
+    <node id="10.1177/00936502241276793">
+      <data key="d0">Siebers</data>
+      <data key="d1">2024</data>
+      <data key="d2">Siebers, 2024</data>
+    </node>
+    <node id="10.1016/j.sleep.2010.02.006">
+      <data key="d0">Cain</data>
+      <data key="d1">2010</data>
+      <data key="d2">Cain, 2010</data>
+    </node>
+    <node id="10.1016/j.chb.2015.05.026">
+      <data key="d0">Carrier</data>
+      <data key="d1">2015</data>
+      <data key="d2">Carrier, 2015</data>
+    </node>
+    <node id="10.1177/2167702617723376">
+      <data key="d0">Twenge</data>
+      <data key="d1">2018</data>
+      <data key="d2">Twenge, 2018</data>
+    </node>
+    <node id="10.1080/15213269.2016.1257393">
+      <data key="d0">Domahidi</data>
+      <data key="d1">2018</data>
+      <data key="d2">Domahidi, 2018</data>
+    </node>
+    <node id="10.1111/jsr.12510">
+      <data key="d0">Exelmans</data>
+      <data key="d1">2017</data>
+      <data key="d2">Exelmans, 2017</data>
+    </node>
+    <node id="10.1249/mss.0000000000001002">
+      <data key="d0">Huang</data>
+      <data key="d1">2016</data>
+      <data key="d2">Huang, 2016</data>
+    </node>
+    <node id="10.1001/jamapediatrics.2024.2914">
+      <data key="d0">Brosnan</data>
+      <data key="d1">2024</data>
+      <data key="d2">Brosnan, 2024</data>
+    </node>
+    <node id="10.1155/2022/1402751">
+      <data key="d0">Aljasir</data>
+      <data key="d1">2022</data>
+      <data key="d2">Aljasir, 2022</data>
+    </node>
+    <node id="10.1177/1461444820932556">
+      <data key="d0">Liu</data>
+      <data key="d1">2021</data>
+      <data key="d2">Liu, 2021</data>
+    </node>
+    <node id="10.1016/j.chb.2014.04.003">
+      <data key="d0">Kowert</data>
+      <data key="d1">2014</data>
+      <data key="d2">Kowert, 2014</data>
+    </node>
+    <node id="10.1016/j.chb.2015.08.049">
+      <data key="d0">Orzech</data>
+      <data key="d1">2016</data>
+      <data key="d2">Orzech, 2016</data>
+    </node>
+    <node id="10.1016/j.compedu.2019.103704">
+      <data key="d0">Drummond</data>
+      <data key="d1">2020</data>
+      <data key="d2">Drummond, 2020</data>
+    </node>
+    <node id="10.1016/j.chb.2016.04.043">
+      <data key="d0">Liang</data>
+      <data key="d1">2016</data>
+      <data key="d2">Liang, 2016</data>
+    </node>
+    <node id="10.2105/ajph.2013.301783">
+      <data key="d0">Booker</data>
+      <data key="d1">2015</data>
+      <data key="d2">Booker, 2015</data>
+    </node>
+    <node id="10.1371/journal.pone.0139984">
+      <data key="d0">Chastin</data>
+      <data key="d1">2015</data>
+      <data key="d2">Chastin, 2015</data>
+    </node>
+    <node id="10.1080/10494820.2022.2160765">
+      <data key="d0">Ngwoke</data>
+      <data key="d1">2022</data>
+      <data key="d2">Ngwoke, 2022</data>
+    </node>
+    <node id="10.1016/j.adolescence.2013.11.003">
+      <data key="d0">Teppers</data>
+      <data key="d1">2014</data>
+      <data key="d2">Teppers, 2014</data>
+    </node>
+    <node id="10.1080/1369118x.2016.1164741">
+      <data key="d0">Vilhelmson</data>
+      <data key="d1">2017</data>
+      <data key="d2">Vilhelmson, 2017</data>
+    </node>
+    <node id="10.1016/j.chb.2015.03.073">
+      <data key="d0">Lee</data>
+      <data key="d1">2015</data>
+      <data key="d2">Lee, 2015</data>
+    </node>
+    <node id="10.1007/s11469-024-01313-0">
+      <data key="d0">Vidal</data>
+      <data key="d1">2024</data>
+      <data key="d2">Vidal, 2024</data>
+    </node>
+    <node id="10.1016/j.compedu.2017.12.007">
+      <data key="d0">Hartanto</data>
+      <data key="d1">2017</data>
+      <data key="d2">Hartanto, 2017</data>
+    </node>
+    <node id="10.1177/0956797616678438">
+      <data key="d0">Przybylski</data>
+      <data key="d1">2017</data>
+      <data key="d2">Przybylski, 2017</data>
+    </node>
+    <node id="10.1016/s2352-4642(19)30186-5">
+      <data key="d0">Viner</data>
+      <data key="d1">2019</data>
+      <data key="d2">Viner, 2019</data>
+    </node>
+    <node id="10.3390/children9081186">
+      <data key="d0">Huang</data>
+      <data key="d1">2022</data>
+      <data key="d2">Huang, 2022</data>
+    </node>
+    <node id="10.1111/sjop.12467">
+      <data key="d0">Skaug</data>
+      <data key="d1">2018</data>
+      <data key="d2">Skaug, 2018</data>
+    </node>
+    <node id="10.1016/j.envres.2018.10.036">
+      <data key="d0">Cabré-Riera</data>
+      <data key="d1">2019</data>
+      <data key="d2">Cabré-Riera, 2019</data>
+    </node>
+    <node id="10.1037/0003-066x.53.9.1017">
+      <data key="d0">Kraut</data>
+      <data key="d1">1998</data>
+      <data key="d2">Kraut, 1998</data>
+    </node>
+    <node id="10.1027/1864-1105/a000388">
+      <data key="d0">Wu-Ouyang</data>
+      <data key="d1">2023</data>
+      <data key="d2">Wu-Ouyang, 2023</data>
+    </node>
+    <node id="10.1177/1461444818804775">
+      <data key="d0">Hall</data>
+      <data key="d1">2019</data>
+      <data key="d2">Hall, 2019</data>
+    </node>
+    <node id="10.1371/journal.pone.0142544">
+      <data key="d0">Spengler</data>
+      <data key="d1">2015</data>
+      <data key="d2">Spengler, 2015</data>
+    </node>
+    <node id="10.1080/15213269.2024.2400571">
+      <data key="d0">Ellithorpe</data>
+      <data key="d1">2024</data>
+      <data key="d2">Ellithorpe, 2024</data>
+    </node>
+    <edge source="10.1186/s12966-024-01587-6" target="10.1371/journal.pone.0139984">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12966-024-01587-6" target="10.1093/aje/kwp163">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12966-024-01587-6" target="10.1249/mss.0000000000001002">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12966-024-01587-6" target="10.1177/0962280217737805">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12966-024-01587-6" target="10.1016/j.envres.2018.10.036">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12966-024-01587-6" target="10.1177/0044118x19868365">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.adolescence.2014.07.013" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0962280217737805" target="10.1371/journal.pone.0139984">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0962280217737805" target="10.1093/aje/kwp163">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0000851" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0000851" target="10.1016/j.adolescence.2013.11.003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0000851" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0000851" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0000851" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.tele.2020.101558" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.tele.2020.101558" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.tele.2020.101558" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0265407519836170" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0265407519836170" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0265407519836170" target="10.1177/1461444817724169">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0265407519836170" target="10.1177/1461444817737296">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1007/s12187-019-09675-x" target="10.1016/j.jpeds.2018.09.054">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.sleep.2016.01.009" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.sleep.2016.01.009" target="10.1016/j.adolescence.2014.07.013">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.sleep.2016.01.009" target="10.1111/apa.12935">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3389/fpsyt.2022.809745" target="10.1007/s12187-019-09675-x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0044118x19868365" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/0044118x19868365" target="10.1093/sleep/30.9.1220">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/s2352-4642(19)30424-9" target="10.1371/journal.pone.0139984">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-021-11802-9" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-021-11802-9" target="10.1016/s2352-4642(19)30186-5">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-021-11802-9" target="10.1016/j.chb.2020.106550">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-021-11802-9" target="10.1037/dev0001148">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-021-11802-9" target="10.1111/jora.12618">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-021-11802-9" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/hcre.12081" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/hcre.12081" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/hcre.12081" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/hcre.12081" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.17269/s41997-023-00754-9" target="10.1177/0956797616678438">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.17269/s41997-023-00754-9" target="10.1016/s2352-4642(19)30186-5">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/0012-1649.35.4.912" target="10.1177/009365093020001003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0001148" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0001148" target="10.1177/1461444817737296">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1037/dev0001148" target="10.1016/j.chb.2020.106550">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1038/s41390-022-02261-y" target="10.1177/009365093020001003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1038/s41390-022-02261-y" target="10.1080/17461391.2018.1548649">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1038/s41390-022-02261-y" target="10.1016/s2352-4642(19)30424-9">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1038/s41390-022-02261-y" target="10.1037/0012-1649.35.4.912">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.jpeds.2018.09.054" target="10.1177/0956797616678438">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444817724169" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/17461391.2018.1548649" target="10.1177/009365093020001003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1002/jad.12376" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2020.106550" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2020.106550" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2020.106550" target="10.1080/1369118x.2018.1430162">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2020.106550" target="10.1177/0265407519836170">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2020.106550" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/j.1083-6101.2007.00368.x" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/j.1083-6101.2007.00368.x" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/j.1083-6101.2007.00368.x" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/1369118x.2018.1430162" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/1369118x.2018.1430162" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/1369118x.2018.1430162" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3389/fpsyg.2021.707667" target="10.1016/j.adolescence.2013.11.003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3389/fpsyg.2021.707667" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/1540-4560.00248" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jora.12618" target="10.1177/0956797616678438">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jora.12618" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jora.12618" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/apa.12935" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3390/ijerph17197122" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3390/ijerph17197122" target="10.1177/0956797616678438">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3390/ijerph17197122" target="10.1177/2167702617723376">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3390/ijerph17197122" target="10.1016/s2352-4642(19)30186-5">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-020-09894-w" target="10.1177/009365093020001003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1186/s12889-020-09894-w" target="10.1371/journal.pone.0142544">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444817737296" target="10.1080/1369118x.2016.1164741">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/0144929x.2024.2406255" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/0144929x.2024.2406255" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/0144929x.2024.2406255" target="10.1177/0956797616678438">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jcc4.12183" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jcc4.12183" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jcc4.12183" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/00936502241276793" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/00936502241276793" target="10.1016/j.adolescence.2014.07.013">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/00936502241276793" target="10.1093/sleep/30.9.1220">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/00936502241276793" target="10.1111/jsr.12510">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/00936502241276793" target="10.1016/j.envres.2018.10.036">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.sleep.2010.02.006" target="10.1093/sleep/30.9.1220">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/2167702617723376" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/15213269.2016.1257393" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/15213269.2016.1257393" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jsr.12510" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jsr.12510" target="10.1093/sleep/30.9.1220">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jsr.12510" target="10.1016/j.sleep.2016.01.009">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/jsr.12510" target="10.1177/0093650216686877">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1249/mss.0000000000001002" target="10.1093/aje/kwp163">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1001/jamapediatrics.2024.2914" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1001/jamapediatrics.2024.2914" target="10.1177/0093650216686877">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1001/jamapediatrics.2024.2914" target="10.1111/jsr.12510">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1155/2022/1402751" target="10.1108/jd-10-2016-0117">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444820932556" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444820932556" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2014.04.003" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2015.08.049" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2015.08.049" target="10.1016/j.adolescence.2014.07.013">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.compedu.2019.103704" target="10.1016/j.compedu.2017.12.007">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.compedu.2019.103704" target="10.1037/0012-1649.35.4.912">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2016.04.043" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.2105/ajph.2013.301783" target="10.1111/j.1083-6101.2007.00368.x">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.2105/ajph.2013.301783" target="10.1177/009365093020001003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.adolescence.2013.11.003" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/1369118x.2016.1164741" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/1369118x.2016.1164741" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.chb.2015.03.073" target="10.1177/009365093020001003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1007/s11469-024-01313-0" target="10.1177/2167702617723376">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1007/s11469-024-01313-0" target="10.1177/1461444818804775">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1007/s11469-024-01313-0" target="10.17269/s41997-023-00754-9">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.compedu.2017.12.007" target="10.1037/0012-1649.35.4.912">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/s2352-4642(19)30186-5" target="10.2105/ajph.2013.301783">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3390/children9081186" target="10.1186/s12889-021-11802-9">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.3390/children9081186" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1111/sjop.12467" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.envres.2018.10.036" target="10.1016/j.sleep.2010.02.006">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1016/j.envres.2018.10.036" target="10.1111/jsr.12510">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1027/1864-1105/a000388" target="10.1177/0956797616678438">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1027/1864-1105/a000388" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444818804775" target="10.1177/00027640121957277">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444818804775" target="10.1111/1540-4560.00248">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444818804775" target="10.1111/hcre.12081">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444818804775" target="10.1080/1369118x.2016.1164741">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444818804775" target="10.1111/jcc4.12183">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444818804775" target="10.1080/1369118x.2018.1430162">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1177/1461444818804775" target="10.1037/0003-066x.53.9.1017">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1371/journal.pone.0142544" target="10.1177/009365093020001003">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/15213269.2024.2400571" target="10.1016/j.chb.2015.08.049">
+      <data key="d3">references</data>
+    </edge>
+    <edge source="10.1080/15213269.2024.2400571" target="10.1111/jsr.12510">
+      <data key="d3">references</data>
+    </edge>
+  </graph>
+</graphml>

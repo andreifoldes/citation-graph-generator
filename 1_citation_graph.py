@@ -15,9 +15,14 @@ from urllib.parse import quote
 import random
 import argparse
 import os
+from dotenv import load_dotenv
 
-# Global variable for email
+# Load environment variables
+load_dotenv()
+
+# Global variables
 global_email = "anonymous@example.com"
+opencitations_token = os.getenv("OPENCITATIONS_ACCESS_TOKEN")  # Keeping this defined but not using it
 
 #%% Gather citations data
 
@@ -123,13 +128,23 @@ def get_referenced_works(openalex_id):
         return []
     
     try:
-        # Properly format the URL for the references endpoint
-        url = f"https://api.openalex.org/works/{openalex_id.split('/')[-1]}/referenced_works"
+        # Get the work details directly from the OpenAlex API
+        # The referenced_works field is part of the work object
+        work_url = f"https://api.openalex.org/works/{openalex_id.split('/')[-1]}"
+        work_data = make_api_request(work_url)
         
-        data = make_api_request(url)
-        if data:
-            return [ref.get('id') for ref in data.get('results', [])]
+        if work_data:
+            # Extract referenced works directly from the work details
+            references = work_data.get('referenced_works', [])
+            
+            if references:
+                print(f"Found {len(references)} references for {openalex_id}")
+                return references
+            else:
+                print(f"No references found for {openalex_id} in OpenAlex data")
+                return []
         else:
+            print(f"Could not get work details for {openalex_id}")
             return []
     except Exception as e:
         print(f"Exception when fetching references for {openalex_id}: {e}")
@@ -152,52 +167,6 @@ def get_cited_by_works(openalex_id):
             return []
     except Exception as e:
         print(f"Exception when fetching citing works for {openalex_id}: {e}")
-        return []
-
-def get_opencitations_references(doi):
-    """Get references (works cited by this paper) from OpenCitations."""
-    if not doi:
-        return []
-    
-    try:
-        # Properly encode the DOI for the URL
-        encoded_doi = quote(doi, safe='')
-        url = f"https://opencitations.net/index/coci/api/v1/references/{encoded_doi}"
-        
-        response = requests.get(url, timeout=10)
-        
-        if response.status_code == 200:
-            data = response.json()
-            # Extract the DOIs of the references
-            return [item.get('cited') for item in data if item.get('cited')]
-        else:
-            print(f"Error fetching references from OpenCitations for DOI {doi}: {response.status_code}")
-            return []
-    except Exception as e:
-        print(f"Exception when fetching references from OpenCitations for DOI {doi}: {e}")
-        return []
-
-def get_opencitations_citations(doi):
-    """Get citations (works that cite this paper) from OpenCitations."""
-    if not doi:
-        return []
-    
-    try:
-        # Properly encode the DOI for the URL
-        encoded_doi = quote(doi, safe='')
-        url = f"https://opencitations.net/index/coci/api/v1/citations/{encoded_doi}"
-        
-        response = requests.get(url, timeout=10)
-        
-        if response.status_code == 200:
-            data = response.json()
-            # Extract the DOIs of the citing works
-            return [item.get('citing') for item in data if item.get('citing')]
-        else:
-            print(f"Error fetching citations from OpenCitations for DOI {doi}: {response.status_code}")
-            return []
-    except Exception as e:
-        print(f"Exception when fetching citations from OpenCitations for DOI {doi}: {e}")
         return []
 
 def get_crossref_work(doi):
@@ -339,52 +308,6 @@ def build_citation_graph(dois, doi_metadata=None, delay_range=(1, 2)):
     
     return G
 
-def build_opencitations_graph(dois, doi_metadata=None, delay_range=(1, 2)):
-    """Build a citation graph from a list of DOIs using OpenCitations API.
-    
-    Args:
-        dois: List of DOIs to process
-        doi_metadata: Dictionary of metadata for DOIs from BibTeX
-        delay_range: Tuple of (min, max) delay between API calls in seconds
-    """
-    # Create a graph
-    G = nx.DiGraph()
-    
-    # Add nodes for all DOIs
-    print("Adding nodes for all DOIs...")
-    for doi in tqdm(dois):
-        # Get metadata for the node
-        metadata = doi_metadata.get(doi, {}) if doi_metadata else {}
-        
-        # If label doesn't exist in metadata, create it
-        if 'label' not in metadata:
-            metadata['label'] = doi.split('/')[-1]
-        
-        G.add_node(doi, **metadata)
-    
-    # Get references for each paper
-    print("Getting references for each paper...")
-    references_count = 0
-    for doi in tqdm(dois):
-        # Get works referenced by this paper
-        referenced_dois = get_opencitations_references(doi)
-        
-        # Add edges for references - paper A references paper B (A -> B)
-        for ref_doi in referenced_dois:
-            if ref_doi in G:  # If the referenced work is in our graph
-                G.add_edge(doi, ref_doi, type='references')
-                references_count += 1
-        
-        # Be gentle with the API
-        time.sleep(random.uniform(*delay_range))
-    
-    print(f"Found {references_count} reference relationships within the dataset.")
-    
-    # We'll skip getting citations separately since they're just the reverse of references
-    # This avoids creating duplicate edges in opposite directions
-    
-    return G
-
 def build_crossref_graph(dois, doi_metadata=None, delay_range=(1, 2)):
     """Build a citation graph from a list of DOIs using Crossref API.
     
@@ -448,8 +371,8 @@ def find_intermediary_papers(G, api_name, max_depth=3, max_papers_per_node=10):
     
     Args:
         G: The citation graph (NetworkX DiGraph)
-        api_name: The API to use (openalex, opencitations, or crossref)
-        max_depth: Maximum depth to search for connections (default: 1)
+        api_name: The API to use (openalex, crossref, or semanticscholar)
+        max_depth: Maximum depth to search for connections (default: 3)
         max_papers_per_node: Maximum number of intermediary papers to add per isolated node
         
     Returns:
@@ -481,110 +404,231 @@ def find_intermediary_papers(G, api_name, max_depth=3, max_papers_per_node=10):
             # For OpenAlex, the node is the OpenAlex ID and we need to get the DOI from node attributes
             doi = G.nodes[node].get('doi', '')
         else:
-            # For OpenCitations and Crossref, the node is the DOI
+            # For Crossref and SemanticScholar, the node is the DOI
             doi = node
         
         if not doi:
             continue
         
-        # Get papers that cite this paper
-        citing_papers = []
+        # Initialize our search from this isolated node
+        visited = set()  # Keep track of papers we've already visited
+        found_connecting_paper = False
+        
+        # Queue for BFS with tuples of (paper_id, depth, path)
+        # Path is a list of papers that connect the isolated node to the current paper
         if api_name == "openalex":
-            citing_papers = get_cited_by_works(node)
-        elif api_name == "opencitations":
-            citing_papers = get_opencitations_citations(doi)
-        elif api_name == "crossref":
-            # Crossref doesn't have a direct API for citations, so we skip this for Crossref
-            pass
+            queue = [(node, 0, [])]
+        else:
+            queue = [(doi, 0, [])]
         
-        # Get papers cited by this paper
-        cited_papers = []
-        if api_name == "openalex":
-            cited_papers = get_referenced_works(node)
-        elif api_name == "opencitations":
-            cited_papers = get_opencitations_references(doi)
-        elif api_name == "crossref":
-            cited_papers = get_crossref_references(doi)
-        
-        # Combine all potential intermediary papers
-        potential_intermediaries = citing_papers + cited_papers
-        
-        # Limit to prevent too many API calls
-        if len(potential_intermediaries) > max_papers_per_node:
-            potential_intermediaries = potential_intermediaries[:max_papers_per_node]
-        
-        papers_added = False
-        
-        # For each potential intermediary
-        for intermediary in potential_intermediaries:
-            # Skip if already in graph
-            if intermediary in G_extended:
+        # Perform a breadth-first search up to max_depth
+        while queue and not found_connecting_paper:
+            current_paper, depth, path = queue.pop(0)
+            
+            # Skip if we've already visited this paper or reached max depth
+            if current_paper in visited or depth > max_depth:
                 continue
             
-            # Get cited papers for this intermediary
-            intermediary_cited = []
-            intermediary_doi = None
+            visited.add(current_paper)
             
+            # Get the DOI for the current paper if needed
+            current_doi = None
             if api_name == "openalex":
-                intermediary_cited = get_referenced_works(intermediary)
-                # Get DOI for the intermediary paper
-                # Extract the OpenAlex ID number
-                openalex_id_number = intermediary.split('/')[-1]
-                url = f"https://api.openalex.org/works/{openalex_id_number}"
-                data = make_api_request(url)
-                if data and 'doi' in data:
-                    intermediary_doi = data['doi']
-            elif api_name == "opencitations":
-                intermediary_doi = intermediary
-                intermediary_cited = get_opencitations_references(intermediary)
+                if current_paper == node:
+                    current_doi = doi  # We already know the DOI of the isolated node
+                else:
+                    # Get DOI for the paper
+                    openalex_id_number = current_paper.split('/')[-1]
+                    url = f"https://api.openalex.org/works/{openalex_id_number}"
+                    data = make_api_request(url)
+                    if data and 'doi' in data:
+                        current_doi = data['doi']
+            else:
+                current_doi = current_paper
+            
+            if not current_doi:
+                continue
+            
+            # Get papers that cite this paper
+            citing_papers = []
+            if api_name == "openalex":
+                citing_papers = get_cited_by_works(current_paper)
+            elif api_name == "semanticscholar":
+                citing_papers = get_semanticscholar_citations(current_doi)
+            # No citations for Crossref
+            
+            # Get papers cited by this paper
+            cited_papers = []
+            if api_name == "openalex":
+                cited_papers = get_referenced_works(current_paper)
+            elif api_name == "semanticscholar":
+                cited_papers = get_semanticscholar_references(current_doi)
             elif api_name == "crossref":
-                intermediary_doi = intermediary
-                intermediary_cited = get_crossref_references(intermediary)
+                cited_papers = get_crossref_references(current_doi)
             
-            # Check if this intermediary connects to any other node in the graph
-            connections_found = False
-            for cited in intermediary_cited:
-                if cited in G.nodes() and cited != node:
-                    connections_found = True
-                    break
+            # Combine all connected papers
+            connected_papers = citing_papers + cited_papers
             
-            if connections_found:
-                # Add the intermediary node to the graph
-                if intermediary_doi:
-                    label = f"Intermediary: {intermediary_doi.split('/')[-1]}"
-                    G_extended.add_node(intermediary, label=label, is_intermediary=True, doi=intermediary_doi)
+            # Prioritize connected papers based on potential to connect to the rest of the graph
+            # For OpenAlex, we can actually get additional metadata for better prioritization
+            prioritized_papers = []
+            
+            for paper_id in connected_papers:
+                # Skip if already visited
+                if paper_id in visited:
+                    continue
+                
+                if api_name == "openalex":
+                    # For OpenAlex we can get citation counts and reference counts
+                    openalex_id_number = paper_id.split('/')[-1]
+                    url = f"https://api.openalex.org/works/{openalex_id_number}"
+                    data = make_api_request(url)
                     
-                    # Add edges
+                    if not data:
+                        continue
+                        
+                    # Calculate a score based on citation count and reference count
+                    citation_count = data.get('cited_by_count', 0)
+                    reference_count = len(data.get('referenced_works', []))
+                    
+                    # Papers with more citations and references are more likely to connect
+                    score = citation_count + reference_count
+                    
+                    # Check if any authors of this paper have other papers in our graph
+                    has_author_in_graph = False
+                    if 'authorships' in data:
+                        for authorship in data['authorships']:
+                            author_id = authorship.get('author', {}).get('id')
+                            if author_id:
+                                # Check if this author has other papers in our graph
+                                # This would require a separate function to track authors
+                                # For simplicity, we'll just boost the score
+                                score += 50
+                                break
+                    
+                    prioritized_papers.append((paper_id, score))
+                else:
+                    # For other APIs, we don't have as much metadata
+                    # We could do an additional API call but for simplicity, just add with a default score
+                    # We'll use the position in the API response as a proxy for importance
+                    position_score = len(connected_papers) - connected_papers.index(paper_id)
+                    prioritized_papers.append((paper_id, position_score))
+            
+            # Sort papers by score in descending order
+            prioritized_papers.sort(key=lambda x: x[1], reverse=True)
+            
+            # Increase max_papers_per_node for the first level of search to cast a wider net
+            actual_max_papers = max_papers_per_node
+            if depth == 0:
+                actual_max_papers = max(30, max_papers_per_node * 2)
+            
+            # Limit to prevent too many API calls but use more papers at the first level
+            if len(prioritized_papers) > actual_max_papers:
+                prioritized_papers = prioritized_papers[:actual_max_papers]
+            
+            # Now continue with the rest of the algorithm using the prioritized papers
+            for paper_id, score in prioritized_papers:
+                # Get papers cited by this connected paper
+                connected_paper_cited = []
+                connected_paper_doi = None
+                
+                if api_name == "openalex":
+                    connected_paper_cited = get_referenced_works(paper_id)
+                    # Get DOI for the connected paper
+                    openalex_id_number = paper_id.split('/')[-1]
+                    url = f"https://api.openalex.org/works/{openalex_id_number}"
+                    data = make_api_request(url)
+                    if data and 'doi' in data:
+                        connected_paper_doi = data['doi']
+                elif api_name == "semanticscholar":
+                    connected_paper_doi = paper_id
+                    connected_paper_cited = get_semanticscholar_references(paper_id)
+                elif api_name == "crossref":
+                    connected_paper_doi = paper_id
+                    connected_paper_cited = get_crossref_references(paper_id)
+                
+                # Check if this paper connects to any other node in the original graph
+                # besides the isolated node we're working with
+                connects_to_other_nodes = False
+                non_isolated_nodes_connected = []
+                
+                for cited in connected_paper_cited:
+                    # Check if the cited paper is in our original graph and is not our isolated node
+                    if cited in G.nodes() and ((api_name == "openalex" and cited != node) or \
+                       (api_name != "openalex" and cited != doi)):
+                        connects_to_other_nodes = True
+                        non_isolated_nodes_connected.append(cited)
+                
+                # Is this paper a good intermediary that connects our isolated node to others?
+                if connects_to_other_nodes and connected_paper_doi:
+                    # We found a good intermediary paper!
+                    label = f"Intermediary: {connected_paper_doi.split('/')[-1]}"
+                    G_extended.add_node(paper_id, label=label, is_intermediary=True, doi=connected_paper_doi)
+                    
+                    # Add the path of intermediary papers that led us here
+                    for i, path_paper in enumerate(path):
+                        # Skip if the path_paper is already in the graph
+                        if path_paper in G_extended and G_extended.nodes[path_paper].get('is_intermediary', False):
+                            continue
+                            
+                        path_paper_doi = None
+                        if api_name == "openalex":
+                            # Get DOI for the paper in the path
+                            openalex_id_number = path_paper.split('/')[-1]
+                            url = f"https://api.openalex.org/works/{openalex_id_number}"
+                            data = make_api_request(url)
+                            if data and 'doi' in data:
+                                path_paper_doi = data['doi']
+                        else:
+                            path_paper_doi = path_paper
+                            
+                        if path_paper_doi:
+                            path_label = f"Path: {path_paper_doi.split('/')[-1]}"
+                            G_extended.add_node(path_paper, label=path_label, is_intermediary=True, doi=path_paper_doi)
+                            
+                            # Add edge to the next paper in the path
+                            if i < len(path) - 1:
+                                G_extended.add_edge(path_paper, path[i+1], type='references')
+                            else:
+                                # Connect the last paper in the path to our connecting paper
+                                G_extended.add_edge(path_paper, paper_id, type='references')
+                    
+                    # Connect our isolated node to the first paper in the path if any
                     if api_name == "openalex":
-                        # Add edge from node to intermediary if node cites intermediary
-                        if intermediary in cited_papers:
-                            G_extended.add_edge(node, intermediary, type='references')
-                        # Add edge from intermediary to node if intermediary cites node
-                        if intermediary in citing_papers:
-                            G_extended.add_edge(intermediary, node, type='references')
+                        if path:
+                            G_extended.add_edge(node, path[0], type='references')
+                        else:
+                            # Direct connection
+                            G_extended.add_edge(node, paper_id, type='references')
                     else:
-                        # For other APIs, use similar logic but with DOIs
-                        if intermediary in cited_papers:
-                            G_extended.add_edge(doi, intermediary, type='references')
-                        if intermediary in citing_papers:
-                            G_extended.add_edge(intermediary, doi, type='references')
+                        if path:
+                            G_extended.add_edge(doi, path[0], type='references')
+                        else:
+                            # Direct connection
+                            G_extended.add_edge(doi, paper_id, type='references')
                     
-                    # Add edges to other nodes in the graph
-                    for cited in intermediary_cited:
-                        if cited in G.nodes() and cited != node:
-                            G_extended.add_edge(intermediary, cited, type='references')
+                    # Add edges from the connecting paper to the non-isolated nodes it connects to
+                    for non_isolated in non_isolated_nodes_connected:
+                        G_extended.add_edge(paper_id, non_isolated, type='references')
                     
-                    papers_added = True
                     intermediary_connections += 1
-                    break  # Only add one intermediary per isolated node to keep the graph clean
+                    found_connecting_paper = True
+                    print(f"Found connecting paper for {node if api_name == 'openalex' else doi} at depth {depth+1} (score: {score})")
+                    break
+                
+                # If we haven't reached max depth, add this paper to the queue
+                if depth + 1 < max_depth and not found_connecting_paper:
+                    # Add this paper to the path
+                    new_path = path + [paper_id]
+                    queue.append((paper_id, depth + 1, new_path))
             
             # Add a small delay to be nice to the API
-            time.sleep(random.uniform(1, 2))
+            time.sleep(random.uniform(0.5, 1))
         
-        if not papers_added:
-            print(f"Could not find intermediary papers for node {node}")
+        if not found_connecting_paper:
+            print(f"Could not find connecting papers for node {node if api_name == 'openalex' else doi} within {max_depth} hops")
     
-    print(f"Added {intermediary_connections} intermediary papers to connect isolated nodes.")
+    print(f"Added {intermediary_connections} intermediary connections to connect isolated nodes.")
     return G_extended
 
 def visualize_citation_graph(G, output_file):
@@ -854,6 +898,212 @@ def merge_citation_graphs(graphs, prefer_metadata=None):
     print(f"Added {edge_count} unique edges to the merged graph.")
     return merged_graph
 
+def find_direct_connections(nodes, api_name="openalex"):
+    """Find direct connections between nodes by looking for title/author matches in reference lists.
+    
+    This is a more direct approach that bypasses API limitations
+    and instead looks at the actual reference text and bibliographic data for each paper.
+    
+    Args:
+        nodes: List of node IDs (OpenAlex IDs or DOIs)
+        api_name: API name to use ("openalex", "opencitations", "crossref", etc.)
+    
+    Returns:
+        List of (source, target) edge pairs
+    """
+    # Skip if we have no nodes
+    if not nodes:
+        return []
+    
+    print(f"Looking for direct connections between {len(nodes)} papers...")
+    
+    # Get paper details with their full reference lists
+    paper_details = {}
+    node_doi_map = {}  # Map DOIs to node IDs
+    
+    for node in tqdm(nodes, desc="Getting paper details"):
+        try:
+            if api_name == "openalex":
+                # Get the work details
+                work_url = f"https://api.openalex.org/works/{node.split('/')[-1]}"
+                data = make_api_request(work_url)
+                
+                if data:
+                    # Store the DOI for mapping
+                    if 'doi' in data and data['doi']:
+                        node_doi_map[data['doi'].lower()] = node
+                    
+                    # Extract useful attributes
+                    paper_details[node] = {
+                        'title': data.get('title', '').lower(),
+                        'authors': [auth.get('author', {}).get('display_name', '').lower() 
+                                   for auth in data.get('authorships', [])],
+                        'year': data.get('publication_year'),
+                        'doi': data.get('doi', ''),
+                        # Get the bibliographic information
+                        'biblio': data.get('biblio', {}),
+                        # Get the referenced works directly
+                        'referenced_works': data.get('referenced_works', []),
+                        # Get the cited_by count - papers with more citations are 
+                        # more likely to be referenced by other papers in our dataset
+                        'cited_by_count': data.get('cited_by_count', 0),
+                        # Get the abstract for potential text matching
+                        'abstract': data.get('abstract_inverted_index', {})
+                    }
+                    
+                    # If we have a DOI, try OpenCitations as a backup for references
+                    if data.get('doi') and not data.get('referenced_works'):
+                        opencitations_refs = get_opencitations_references(data['doi'])
+                        if opencitations_refs:
+                            paper_details[node]['opencitations_refs'] = opencitations_refs
+            
+            elif api_name == "crossref" and node.startswith("10."):
+                # For Crossref, the node is the DOI
+                work_data = get_crossref_work(node)
+                if work_data:
+                    node_doi_map[node.lower()] = node
+                    
+                    paper_details[node] = {
+                        'title': work_data.get('title', [''])[0].lower() if isinstance(work_data.get('title'), list) else '',
+                        'authors': [],
+                        'year': work_data.get('published-print', {}).get('date-parts', [['']])[0][0] if 'published-print' in work_data else '',
+                        'doi': node,
+                    }
+                    
+                    # Extract authors
+                    if 'author' in work_data:
+                        paper_details[node]['authors'] = [
+                            author.get('family', '').lower() 
+                            for author in work_data['author'] 
+                            if 'family' in author
+                        ]
+                    
+                    # Extract references
+                    if 'reference' in work_data:
+                        ref_dois = []
+                        for ref in work_data['reference']:
+                            if 'DOI' in ref:
+                                ref_dois.append(ref['DOI'].lower())
+                        
+                        paper_details[node]['references'] = ref_dois
+        
+        except Exception as e:
+            print(f"Error getting details for {node}: {e}")
+    
+    # Now look for direct connections
+    print("Analyzing papers to find direct connections...")
+    direct_connections = []
+    
+    # First, map any DOIs to node IDs
+    doi_connections = []
+    for source_node, source_details in paper_details.items():
+        # If we have referenced_works in OpenAlex, use those directly
+        if source_details.get('referenced_works'):
+            for ref_id in source_details['referenced_works']:
+                if ref_id in nodes:
+                    direct_connections.append((source_node, ref_id))
+        
+        # If we have OpenCitations references (which are DOIs), map them to nodes
+        if source_details.get('opencitations_refs'):
+            for ref_doi in source_details['opencitations_refs']:
+                ref_doi_lower = ref_doi.lower()
+                # Try to find this DOI in our node_doi_map
+                for node_doi, node_id in node_doi_map.items():
+                    if ref_doi_lower == node_doi.lower():
+                        doi_connections.append((source_node, node_id))
+                        break
+    
+    # Add DOI connections to our list
+    if doi_connections:
+        print(f"Found {len(doi_connections)} connections via DOI matching")
+        direct_connections.extend(doi_connections)
+    
+    # Next, try matching by content (title and authors)
+    content_connections = []
+    for source_node, source_details in tqdm(paper_details.items(), desc="Finding title/author matches"):
+        source_title = source_details.get('title', '').lower()
+        source_authors = [a.lower() for a in source_details.get('authors', []) if a]
+        
+        # Skip if we don't have good source data
+        if not source_title or not source_authors:
+            continue
+        
+        # Check each potential target
+        for target_node, target_details in paper_details.items():
+            # Skip self-references
+            if source_node == target_node:
+                continue
+                
+            target_title = target_details.get('title', '').lower()
+            target_authors = [a.lower() for a in target_details.get('authors', []) if a]
+            target_year = target_details.get('year')
+            
+            # Skip if we don't have good target data
+            if not target_title or not target_authors:
+                continue
+                
+            # Skip if target is newer than source (can't cite something that doesn't exist yet)
+            if source_details.get('year') and target_year and int(source_details['year']) < int(target_year):
+                continue
+            
+            # Check if the target title appears in the source biblio
+            biblio = source_details.get('biblio', {})
+            if biblio:
+                biblio_str = ' '.join(str(val).lower() for val in biblio.values() if val)
+                
+                # Check if target title appears in the biblio text
+                if target_title in biblio_str:
+                    # Check if at least one author also appears
+                    for author in target_authors:
+                        if author and len(author) > 3 and author in biblio_str:
+                            content_connections.append((source_node, target_node))
+                            break
+    
+    # Add content-based connections
+    if content_connections:
+        print(f"Found {len(content_connections)} connections via title/author matching")
+        direct_connections.extend(content_connections)
+    
+    # Remove duplicates (if any)
+    direct_connections = list(set(direct_connections))
+    
+    print(f"Found a total of {len(direct_connections)} potential direct connections")
+    return direct_connections
+
+def export_graph_for_visualization(G, output_dir):
+    """Export the graph to formats compatible with visualization tools like Gephi or Cytoscape.
+    
+    Args:
+        G: NetworkX graph to export
+        output_dir: Directory to save the exported files
+    """
+    # Create a copy of the graph for export to avoid modifying the original
+    G_export = G.copy()
+    
+    # For GEXF export: Convert edge 'type' attribute to 'edge_type' to avoid reserved word issues
+    # Also ensure all attributes are properly formatted for GEXF
+    for u, v, data in G_export.edges(data=True):
+        # Change 'type' attribute to 'edge_type' for GEXF compatibility
+        if 'type' in data:
+            data['edge_type'] = data['type']
+            del data['type']
+    
+    # Export to GEXF format (for Gephi)
+    gexf_file = os.path.join(output_dir, "citation_graph.gexf")
+    print(f"Exporting graph to GEXF format for Gephi: {gexf_file}")
+    nx.write_gexf(G_export, gexf_file)
+    
+    # For GraphML: No need to change attribute names
+    # Reset the copy to retain original 'type' attribute for GraphML
+    G_export = G.copy()
+    
+    # Export to GraphML format (for Cytoscape and others)
+    graphml_file = os.path.join(output_dir, "citation_graph.graphml")
+    print(f"Exporting graph to GraphML format for Cytoscape: {graphml_file}")
+    nx.write_graphml(G_export, graphml_file)
+    
+    print("Graph exported successfully. You can now open these files in Gephi or Cytoscape for interactive exploration.")
+
 #%% Main execution
 if __name__ == "__main__":
     # Set up command line arguments
@@ -863,10 +1113,10 @@ if __name__ == "__main__":
     parser.add_argument('--email', help='Email to use for API requests (helps with rate limits)')
     parser.add_argument('--output-dir', default="output", help='Directory to save output files (default: output)')
     parser.add_argument('--api', default="openalex", 
-                      choices=["openalex", "opencitations", "crossref", "semanticscholar", "all"], 
+                      choices=["openalex", "crossref", "semanticscholar", "all"], 
                       help='API to use for citation data (default: openalex, "all" to use and merge all APIs)')
     parser.add_argument('--prefer-metadata', default="openalex",
-                      choices=["openalex", "opencitations", "crossref", "semanticscholar"],
+                      choices=["openalex", "crossref", "semanticscholar"],
                       help='Preferred API for metadata when merging (default: openalex)')
     parser.add_argument('--find-intermediaries', action='store_true', help='Find intermediary papers to connect isolated nodes')
     parser.add_argument('--max-intermediaries', type=int, default=10, help='Maximum number of intermediary papers to check per isolated node')
@@ -906,55 +1156,192 @@ if __name__ == "__main__":
             if args.cache and os.path.exists(openalex_cache):
                 try:
                     with open(openalex_cache, 'r') as f:
-                        doi_to_openalex = json.load(f)
-                    print(f"Loaded {len(doi_to_openalex)} OpenAlex IDs from cache.")
+                        cache_data = json.load(f)
                     
-                    # Create initial graph from cached data
-                    openalex_graph = nx.DiGraph()
-                    for doi, openalex_id in doi_to_openalex.items():
-                        # Get metadata if available
-                        metadata = doi_metadata.get(doi, {}) if doi_metadata else {}
-                        # If label doesn't exist in metadata, create it
-                        if 'label' not in metadata:
-                            metadata['label'] = f"{doi.split('/')[-1]}"
-                        openalex_graph.add_node(openalex_id, doi=doi, **metadata)
-                    
-                    # Get references for each paper
-                    print("Getting references for each paper from OpenAlex...")
-                    references_count = 0
-                    for node in tqdm(openalex_graph.nodes()):
-                        referenced_works = get_referenced_works(node)
+                    # Check if cache contains the new format with references
+                    if isinstance(cache_data, dict) and 'doi_to_openalex' in cache_data and 'references' in cache_data:
+                        doi_to_openalex = cache_data['doi_to_openalex']
+                        reference_pairs = cache_data['references']
+                        print(f"Loaded {len(doi_to_openalex)} OpenAlex IDs and {len(reference_pairs)} reference relationships from cache.")
                         
-                        # Add edges for references
-                        for ref_work in referenced_works:
-                            if ref_work in openalex_graph:  # If the referenced work is in our graph
-                                openalex_graph.add_edge(node, ref_work, type='references')
+                        # Create initial graph from cached data
+                        openalex_graph = nx.DiGraph()
+                        for doi, openalex_id in doi_to_openalex.items():
+                            # Get metadata if available
+                            metadata = doi_metadata.get(doi, {}) if doi_metadata else {}
+                            # If label doesn't exist in metadata, create it
+                            if 'label' not in metadata:
+                                metadata['label'] = f"{doi.split('/')[-1]}"
+                            openalex_graph.add_node(openalex_id, doi=doi, **metadata)
+                        
+                        # Add cached reference relationships
+                        references_count = 0
+                        for source, target in reference_pairs:
+                            if source in openalex_graph and target in openalex_graph:  # Ensure both nodes are in the graph
+                                openalex_graph.add_edge(source, target, type='references')
                                 references_count += 1
-                    
-                    print(f"Found {references_count} reference relationships within the OpenAlex dataset.")
-                    graphs_to_merge.append((openalex_graph, "openalex"))
+                        
+                        print(f"Added {references_count} reference relationships from cache.")
+                        graphs_to_merge.append((openalex_graph, "openalex"))
+                    else:
+                        # Handle legacy cache format (only DOI to OpenAlex mappings)
+                        doi_to_openalex = cache_data
+                        print(f"Loaded {len(doi_to_openalex)} OpenAlex IDs from cache (legacy format).")
+                        
+                        # Create initial graph from cached data
+                        openalex_graph = nx.DiGraph()
+                        for doi, openalex_id in doi_to_openalex.items():
+                            # Get metadata if available
+                            metadata = doi_metadata.get(doi, {}) if doi_metadata else {}
+                            # If label doesn't exist in metadata, create it
+                            if 'label' not in metadata:
+                                metadata['label'] = f"{doi.split('/')[-1]}"
+                            openalex_graph.add_node(openalex_id, doi=doi, **metadata)
+                        
+                        # Add this code to debug potential connections
+                        # Analyze how many DOIs are from the same journals or have the same authors
+                        print("Analyzing potential connections between papers...")
+                        # Get the list of DOIs in our graph
+                        our_dois = list(doi_to_openalex.keys())
+                        
+                        # Debug: Check how many papers we should expect to have connections
+                        potential_connections = 0
+                        # First, get metadata for each paper to see which are from same journals
+                        paper_metadata = {}
+                        for doi, openalex_id in doi_to_openalex.items():
+                            try:
+                                # Get the paper's metadata
+                                paper_url = f"https://api.openalex.org/works/{openalex_id.split('/')[-1]}"
+                                data = make_api_request(paper_url)
+                                if data:
+                                    # Extract journal/venue info
+                                    if 'primary_location' in data and 'source' in data['primary_location']:
+                                        source = data['primary_location']['source']
+                                        if source and 'id' in source:
+                                            paper_metadata[doi] = {'source_id': source['id']}
+                                    
+                                    # Extract author IDs
+                                    if 'authorships' in data:
+                                        paper_metadata[doi]['author_ids'] = [
+                                            auth.get('author', {}).get('id') 
+                                            for auth in data['authorships'] 
+                                            if auth.get('author', {}).get('id')
+                                        ]
+                                    
+                                    # Extract publication year
+                                    if 'publication_year' in data:
+                                        paper_metadata[doi]['year'] = data['publication_year']
+                            except Exception as e:
+                                print(f"Error getting metadata for {doi}: {e}")
+                        
+                        # Check for papers from same sources/journals
+                        sources = {}
+                        for doi, metadata in paper_metadata.items():
+                            if 'source_id' in metadata:
+                                source_id = metadata['source_id']
+                                if source_id in sources:
+                                    sources[source_id].append(doi)
+                                else:
+                                    sources[source_id] = [doi]
+                        
+                        # Print source statistics
+                        print(f"Found metadata for {len(paper_metadata)} papers")
+                        print(f"Papers are from {len(sources)} different sources/journals")
+                        
+                        # Print sources with multiple papers (these are more likely to have connections)
+                        sources_with_multiple = {k: v for k, v in sources.items() if len(v) > 1}
+                        print(f"Found {len(sources_with_multiple)} sources with multiple papers:")
+                        for source_id, dois in sources_with_multiple.items():
+                            print(f"  Source {source_id}: {len(dois)} papers")
+                            potential_connections += len(dois) * (len(dois) - 1) // 2  # n*(n-1)/2 potential connections
+                        
+                        # Check for papers with same authors
+                        author_papers = {}
+                        for doi, metadata in paper_metadata.items():
+                            if 'author_ids' in metadata:
+                                for author_id in metadata['author_ids']:
+                                    if author_id in author_papers:
+                                        author_papers[author_id].append(doi)
+                                    else:
+                                        author_papers[author_id] = [doi]
+                        
+                        # Print author statistics
+                        authors_with_multiple = {k: v for k, v in author_papers.items() if len(v) > 1}
+                        print(f"Found {len(authors_with_multiple)} authors with multiple papers:")
+                        for author_id, dois in authors_with_multiple.items():
+                            print(f"  Author {author_id}: {len(dois)} papers")
+                            potential_connections += len(dois) * (len(dois) - 1) // 2  # More potential connections
+                        
+                        print(f"Based on common sources and authors, we should expect approximately {potential_connections} connections")
+                        print("These are just potential connections - actual citation links depend on papers citing each other")
+                        
+                        # Continue with getting references for each paper
+                        print("Getting references for each paper...")
+                        references_count = 0
+                        reference_pairs = []
+                        for node in tqdm(openalex_graph.nodes()):
+                            referenced_works = get_referenced_works(node)
+                            
+                            # Add edges for references
+                            for ref_work in referenced_works:
+                                if ref_work in openalex_graph:  # If the referenced work is in our graph
+                                    openalex_graph.add_edge(node, ref_work, type='references')
+                                    reference_pairs.append((node, ref_work))
+                                    references_count += 1
+                        
+                        print(f"Found {references_count} reference relationships within the OpenAlex dataset.")
+                        
+                        # Save the updated cache with references
+                        cache_data = {
+                            'doi_to_openalex': doi_to_openalex,
+                            'references': reference_pairs
+                        }
+                        with open(openalex_cache, 'w', encoding='utf-8') as f:
+                            json.dump(cache_data, f, indent=2)
+                        print(f"Updated cache with {len(reference_pairs)} reference relationships.")
+                        graphs_to_merge.append((openalex_graph, "openalex"))
                 except Exception as e:
                     print(f"Error loading OpenAlex cache: {e}")
                     print("Building OpenAlex citation graph from scratch...")
                     openalex_graph = build_citation_graph(dois, doi_metadata)
                     graphs_to_merge.append((openalex_graph, "openalex"))
                     
-                    # Save OpenAlex IDs for caching
+                    # Save OpenAlex IDs and reference relationships for caching
                     doi_to_openalex = {openalex_graph.nodes[node]['doi']: node for node in openalex_graph.nodes() 
-                                    if 'doi' in openalex_graph.nodes[node]}
+                                     if 'doi' in openalex_graph.nodes[node]}
+                    
+                    # Extract reference relationships as pairs of OpenAlex IDs
+                    reference_pairs = [(u, v) for u, v in openalex_graph.edges()]
+                    
+                    # Create new cache format with both mappings and references
+                    cache_data = {
+                        'doi_to_openalex': doi_to_openalex,
+                        'references': reference_pairs
+                    }
+                    
                     with open(openalex_cache, 'w', encoding='utf-8') as f:
-                        json.dump(doi_to_openalex, f, indent=2)
-                    print(f"Saved {len(doi_to_openalex)} OpenAlex IDs to cache.")
+                        json.dump(cache_data, f, indent=2)
+                    print(f"Saved {len(doi_to_openalex)} OpenAlex IDs and {len(reference_pairs)} reference relationships to cache.")
             else:
                 openalex_graph = build_citation_graph(dois, doi_metadata)
                 graphs_to_merge.append((openalex_graph, "openalex"))
                 
-                # Save OpenAlex IDs for caching
+                # Save OpenAlex IDs and reference relationships for caching
                 doi_to_openalex = {openalex_graph.nodes[node]['doi']: node for node in openalex_graph.nodes() 
                                 if 'doi' in openalex_graph.nodes[node]}
+                
+                # Extract reference relationships as pairs of OpenAlex IDs
+                reference_pairs = [(u, v) for u, v in openalex_graph.edges()]
+                
+                # Create new cache format with both mappings and references
+                cache_data = {
+                    'doi_to_openalex': doi_to_openalex,
+                    'references': reference_pairs
+                }
+                
                 with open(openalex_cache, 'w', encoding='utf-8') as f:
-                    json.dump(doi_to_openalex, f, indent=2)
-                print(f"Saved {len(doi_to_openalex)} OpenAlex IDs to cache.")
+                    json.dump(cache_data, f, indent=2)
+                print(f"Saved {len(doi_to_openalex)} OpenAlex IDs and {len(reference_pairs)} reference relationships to cache.")
         except Exception as e:
             print(f"Error building OpenAlex graph: {e}")
         
@@ -1086,43 +1473,7 @@ if __name__ == "__main__":
             print(f"Saved graph data to cache file: {cache_file}")
     else:
         # Continue with existing code for OpenAlex, OpenCitations, and Crossref
-        if api_name == "opencitations":
-            # For OpenCitations, we don't need to map DOIs to anything
-            if args.cache and os.path.exists(cache_file):
-                try:
-                    with open(cache_file, 'r') as f:
-                        cached_graph_data = json.load(f)
-                    print(f"Loaded cached graph data from {cache_file}")
-                    
-                    # Recreate graph from cached data
-                    citation_graph = nx.DiGraph()
-                    
-                    # Add nodes
-                    for node_data in cached_graph_data['nodes']:
-                        citation_graph.add_node(node_data['id'], label=node_data.get('label', ''))
-                    
-                    # Add edges - keep only 'references' type edges for consistency
-                    for edge_data in cached_graph_data['edges']:
-                        if edge_data.get('type') == 'references':
-                            citation_graph.add_edge(edge_data['source'], edge_data['target'], type='references')
-                    
-                    print(f"Recreated graph with {len(citation_graph.nodes)} nodes and {len(citation_graph.edges)} edges.")
-                except Exception as e:
-                    print(f"Error loading cache: {e}")
-                    print("Building citation graph using OpenCitations...")
-                    citation_graph = build_opencitations_graph(dois, doi_metadata)
-                    
-                    # Save graph data for caching
-                    save_citation_graph(citation_graph, cache_file)
-                    print(f"Saved graph data to cache file: {cache_file}")
-            else:
-                print("Building citation graph using OpenCitations...")
-                citation_graph = build_opencitations_graph(dois, doi_metadata)
-                
-                # Save graph data for caching
-                save_citation_graph(citation_graph, cache_file)
-                print(f"Saved graph data to cache file: {cache_file}")
-        elif api_name == "crossref":
+        if api_name == "crossref":
             # For Crossref, we use DOIs directly
             if args.cache and os.path.exists(cache_file):
                 try:
@@ -1164,20 +1515,50 @@ if __name__ == "__main__":
             if args.cache and os.path.exists(cache_file):
                 try:
                     with open(cache_file, 'r') as f:
-                        doi_to_openalex = json.load(f)
-                    print(f"Loaded {len(doi_to_openalex)} OpenAlex IDs from cache.")
+                        cache_data = json.load(f)
                     
-                    # Create initial graph from cached data
-                    G = nx.DiGraph()
-                    for doi, openalex_id in doi_to_openalex.items():
-                        # Get metadata if available
-                        metadata = doi_metadata.get(doi, {}) if doi_metadata else {}
-                        # If label doesn't exist in metadata, create it
-                        if 'label' not in metadata:
-                            metadata['label'] = f"{doi.split('/')[-1]}"
-                        G.add_node(openalex_id, doi=doi, **metadata)
-                    
-                    use_cache = True
+                    # Check if cache contains the new format with references
+                    if isinstance(cache_data, dict) and 'doi_to_openalex' in cache_data and 'references' in cache_data:
+                        doi_to_openalex = cache_data['doi_to_openalex']
+                        reference_pairs = cache_data['references']
+                        print(f"Loaded {len(doi_to_openalex)} OpenAlex IDs and {len(reference_pairs)} reference relationships from cache.")
+                        
+                        # Create initial graph from cached data
+                        G = nx.DiGraph()
+                        for doi, openalex_id in doi_to_openalex.items():
+                            # Get metadata if available
+                            metadata = doi_metadata.get(doi, {}) if doi_metadata else {}
+                            # If label doesn't exist in metadata, create it
+                            if 'label' not in metadata:
+                                metadata['label'] = f"{doi.split('/')[-1]}"
+                            G.add_node(openalex_id, doi=doi, **metadata)
+                        
+                        # Add cached reference relationships
+                        references_count = 0
+                        for source, target in reference_pairs:
+                            if source in G and target in G:  # Ensure both nodes are in the graph
+                                G.add_edge(source, target, type='references')
+                                references_count += 1
+                        
+                        print(f"Added {references_count} reference relationships from cache.")
+                        use_cache = True
+                        citation_graph = G
+                    else:
+                        # Handle legacy cache format (only DOI to OpenAlex mappings)
+                        doi_to_openalex = cache_data
+                        print(f"Loaded {len(doi_to_openalex)} OpenAlex IDs from cache (legacy format).")
+                        
+                        # Create initial graph from cached data
+                        G = nx.DiGraph()
+                        for doi, openalex_id in doi_to_openalex.items():
+                            # Get metadata if available
+                            metadata = doi_metadata.get(doi, {}) if doi_metadata else {}
+                            # If label doesn't exist in metadata, create it
+                            if 'label' not in metadata:
+                                metadata['label'] = f"{doi.split('/')[-1]}"
+                            G.add_node(openalex_id, doi=doi, **metadata)
+                        
+                        use_cache = True
                 except Exception as e:
                     print(f"Error loading cache: {e}")
                     use_cache = False
@@ -1186,19 +1567,47 @@ if __name__ == "__main__":
                 print("Building citation graph using OpenAlex...")
                 citation_graph = build_citation_graph(dois, doi_metadata)
                 
-                # Save OpenAlex IDs for caching
+                # Save OpenAlex IDs and reference relationships for caching
                 doi_to_openalex = {citation_graph.nodes[node]['doi']: node for node in citation_graph.nodes() 
                                    if 'doi' in citation_graph.nodes[node]}
+                
+                # Extract reference relationships as pairs of OpenAlex IDs
+                reference_pairs = [(u, v) for u, v in citation_graph.edges()]
+                
+                # Create new cache format with both mappings and references
+                cache_data = {
+                    'doi_to_openalex': doi_to_openalex,
+                    'references': reference_pairs
+                }
+                
                 with open(cache_file, 'w', encoding='utf-8') as f:
-                    json.dump(doi_to_openalex, f, indent=2)
-                print(f"Saved {len(doi_to_openalex)} OpenAlex IDs to cache.")
-            else:
+                    json.dump(cache_data, f, indent=2)
+                print(f"Saved {len(doi_to_openalex)} OpenAlex IDs and {len(reference_pairs)} reference relationships to cache.")
+            elif use_cache and not 'references' in locals():
+                # If using legacy cache format, still need to get references
                 print("Building citation graph from cached OpenAlex IDs...")
                 citation_graph = G
                 
-                # Get references for each paper
+                # Add this line to try direct connections when the analysis is done
+                print("Trying to find direct connections between papers...")
+                reference_pairs = []  # Initialize before using
+                direct_connections = find_direct_connections(list(citation_graph.nodes()), api_name="openalex")
+                
+                # If we found direct connections, add them to the graph
+                if direct_connections:
+                    print(f"Adding {len(direct_connections)} direct connections to the graph")
+                    direct_connection_count = 0
+                    for source, target in direct_connections:
+                        if source in citation_graph and target in citation_graph:
+                            citation_graph.add_edge(source, target, type='references')
+                            reference_pairs.append((source, target))
+                            direct_connection_count += 1
+                    print(f"Added {direct_connection_count} direct connections to the graph")
+                
+                # Continue with normal reference fetching
                 print("Getting references for each paper...")
                 references_count = 0
+                reference_pairs = []
                 for node in tqdm(citation_graph.nodes()):
                     referenced_works = get_referenced_works(node)
                     
@@ -1206,12 +1615,19 @@ if __name__ == "__main__":
                     for ref_work in referenced_works:
                         if ref_work in citation_graph:  # If the referenced work is in our graph
                             citation_graph.add_edge(node, ref_work, type='references')
+                            reference_pairs.append((node, ref_work))
                             references_count += 1
                 
                 print(f"Found {references_count} reference relationships within the dataset.")
                 
-                # We'll skip getting citations separately since they're just the reverse of references
-                # This avoids creating duplicate edges in opposite directions
+                # Save the updated cache with references
+                cache_data = {
+                    'doi_to_openalex': doi_to_openalex,
+                    'references': reference_pairs
+                }
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(cache_data, f, indent=2)
+                print(f"Updated cache with {len(reference_pairs)} reference relationships.")
     
     print(f"Graph has {len(citation_graph.nodes)} nodes and {len(citation_graph.edges)} edges.")
     
@@ -1236,6 +1652,14 @@ if __name__ == "__main__":
     
     print("Generating citation report...")
     generate_citation_report(citation_graph, report_file)
+    
+    print("Exporting graph for visualization tools...")
+    export_graph_for_visualization(citation_graph, args.output_dir)
+    
+    # If we found intermediary papers, also export the extended graph
+    if args.find_intermediaries:
+        print("Exporting extended graph for visualization tools...")
+        export_graph_for_visualization(extended_graph, args.output_dir)
     
     print(f"Done! Output files are in {args.output_dir}/")
 # %%
