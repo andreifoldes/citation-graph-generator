@@ -114,6 +114,9 @@ The script generates the following files in the output directory:
 - `leiden_metrics.png`: Metrics analysis of Leiden communities
 - `community_assignments.csv`: CSV file with community assignments for each paper
 
+### Influence Detection Files
+- `network_measures.csv`: CSV file containing various centrality and participation metrics for each node in the network.
+
 ## How It Works
 
 1. The script extracts DOIs from the BibTeX file
@@ -141,6 +144,39 @@ The community detection script (`2_community_detection.py`) provides:
   - Network metrics (density, clustering coefficient)
 - Visualizations of communities with color coding
 - Comparison between algorithm results
+
+## Influence Detection
+
+The influence detection script (`3_influence_detection.py`) analyzes the network structure to identify influential nodes based on various centrality and participation metrics.
+
+This script:
+- Loads network data (nodes, links, clusters) from a VOSviewer JSON file.
+- Builds a graph representation of the network using `networkx`.
+- Calculates several network measures for each node:
+    - **Overall Centrality:** Degree, PageRank, Closeness, Betweenness, Clustering Coefficient.
+    - **Within-Cluster Centrality:** Degree, PageRank, Closeness calculated within each node's cluster subgraph.
+    - **Participation Coefficient:** Measures how a node's links are distributed among different clusters.
+- Exports the calculated measures to a CSV file.
+
+### Usage
+
+Run the script, providing the path to the VOSviewer JSON file:
+
+```bash
+conda activate datasci
+python 3_influence_detection.py path/to/your/vosviewer_network.json
+```
+
+You can specify a different output file path:
+
+```bash
+python 3_influence_detection.py path/to/input.json -o path/to/output_measures.csv
+```
+
+### Command Line Arguments
+
+- `input_json`: (Required) Path to the input VOSviewer JSON file.
+- `-o`, `--output_csv`: Path to the output CSV file (default: "output/network_measures.csv").
 
 ## API Comparison
 
